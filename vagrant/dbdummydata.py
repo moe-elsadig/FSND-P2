@@ -56,9 +56,9 @@ session.commit()
 
 
 # Category 2
-category2 = Category(user_id=1, title="category 1")
+category2 = Category(user_id=1, title="category 2")
 
-session.add(category1)
+session.add(category2)
 session.commit()
 
 categoryItem1 = CategoryItem(user_id=1, title="item title", description="description here...", category_id=2)

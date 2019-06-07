@@ -21,8 +21,25 @@ session = DBSession()
 
 @app.route('/')
 @app.route('/catalogue/')
+@app.route('/categories/')
 def showCategories():
-    return render_template('catalogue.html')
+
+    # Obtain a list of the available categories
+    categories = session.query(Category).all()
+
+    return render_template('catalogue.html', categories=categories)
+
+
+@app.route('/catalogue/<int:category_id>/')
+def showItems(category_id):
+
+    # Obtain a list of the available categories
+    categories = session.query(Category).all()
+
+    # Obtain a list of the selected category's items
+    items = session.query(CategoryItem).filter_by(category_id=category_id).all()
+
+    return render_template('catalogue.html', categories=categories, items=items)
 
 
 
