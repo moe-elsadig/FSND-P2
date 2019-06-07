@@ -1,0 +1,35 @@
+<html>
+
+  <head>
+      <!-- Link this file to the styles.css file in the static folder -->
+      <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
+    </head>
+
+  <body>
+
+    <h1>Delete an existing Category</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+          {% for message in messages %}
+
+            <li> <strong> {{ message }} </strong> </li>
+
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+
+    <form action="{{url_for('deleteCategory', category_id=category_id)}}" method = 'POST'>
+
+    <h2>Are you sure you want to delete the "{{category.title}}" category?</h2>
+    <input type='submit' value='Confirm'>
+
+    <a href="{{url_for('showCategories')}}">Home</a>
+
+    </body>
+
+</html>

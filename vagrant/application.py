@@ -84,6 +84,25 @@ def editCategory(category_id):
 
 
 
+@app.route('/catalogue/<int:category_id>/delete/', methods=['POST','GET'])
+def deleteCategory(category_id):
+
+    category = session.query(Category).filter_by(id=category_id).one()
+
+    # Check to see if there is a POST request from the interface
+    if request.method == 'POST':
+        # Create a new category and commit it to the database
+        # title: the title entered in the form
+        # user_id: use the id of the logged in user
+        session.delete(category)
+        session.commit()
+
+        flash('~*Category Deleted')
+
+        return redirect(url_for('showCategories'))
+
+    return render_template('deleteCategory.html', category_id=category_id, category=category)
+
 
 
 # Run the app in the localhost on port 8000
