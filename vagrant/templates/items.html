@@ -31,6 +31,16 @@
       <a href="{{url_for('editCategory', category_id=category.id)}}">Edit</a>
       <a href="{{url_for('deleteCategory', category_id=category.id)}}">Delete</a>
 
+      {% if items and category.id == items[0].category_id %}
+
+        {% for item in items %}
+
+
+          <h3><a href='#'>{{item.title}}</a></h3>
+
+        {% endfor %}
+      {% endif %}
+
 
       </br></br>
 

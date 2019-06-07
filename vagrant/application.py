@@ -42,7 +42,7 @@ def showItems(category_id):
     # Obtain a list of the selected category's items
     items = session.query(CategoryItem).filter_by(category_id=category_id).all()
 
-    return render_template('catalogue.html', categories=categories, items=items)
+    return render_template('items.html', categories=categories, items=items)
 
 @app.route('/catalogue/new/', methods=['POST','GET'])
 def newCategory():
