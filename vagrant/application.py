@@ -104,6 +104,14 @@ def deleteCategory(category_id):
     return render_template('deleteCategory.html', category_id=category_id, category=category)
 
 
+@app.route('/catalogue/<int:category_id>/<int:item_id>/', methods=['POST','GET'])
+def showItem(category_id, item_id):
+
+    category = session.query(Category).filter_by(id=category_id).one()
+    item = session.query(CategoryItem).filter_by(id=item_id,category_id=category_id).one()
+
+    return render_template('item.html', category_id=category_id, item_id=item_id, category=category, item=item)
+
 
 @app.route('/catalogue/<int:category_id>/new/', methods=['POST','GET'])
 def newItem(category_id):
