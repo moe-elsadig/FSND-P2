@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*-
+
 # Import dependencies
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import session as login_session
 from database_setup import Base, User, Category, CategoryItem
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import requests
 
 
 
@@ -40,6 +43,24 @@ def showItems(category_id):
     items = session.query(CategoryItem).filter_by(category_id=category_id).all()
 
     return render_template('catalogue.html', categories=categories, items=items)
+
+@app.route('/catalogue/new/', methods=['POST','GET'])
+def newCategory():
+
+    # Check to see if there is a POST request from the interface
+    if request.method == 'POST':
+        # Create a new category and commit it to the database
+        # title: the title entered in the form
+        # user_id: use the id of the logged in user
+        category = Category(title=request.form['title'], user_id=request.form.get('user_id', 1))
+        session.add(category)
+        session.commit()
+
+        flash('~*New Category Created')
+
+        return redirect(url_for('showCategories'))
+
+    return render_template('newCategory.html')
 
 
 
