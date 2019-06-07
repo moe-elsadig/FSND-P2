@@ -50,17 +50,23 @@ def showCategories():
     # Obtain a list of the available categories
     categories = session.query(Category).all()
 
-
-
-
     # Check to see if a user is currently logged in to access the page
     if 'username' not in login_session:
         return render_template('publicCatalogue.html',categories=categories)
     else:
         return render_template('catalogue.html', categories=categories, log_in_stat=1)
 
+# Route to: JSON list of the restaurants available to the app
+@app.route('/categories/JSON')
+def showCategoriesJSON():
 
-@app.route('/catalogue/<int:category_id>/')
+    # Obtain a list of the restaurants available to the app
+    categories = session.query(Category).all()
+
+    # Return a JSON version of the list of restaurants available
+    return jsonify(categories=[category.serialize for category in categories])
+
+@app.route('/category/<int:category_id>/')
 def showItems(category_id):
 
     # Obtain a list of the available categories
@@ -77,7 +83,17 @@ def showItems(category_id):
 
 
 
-@app.route('/catalogue/new/', methods=['POST','GET'])
+# Route to: JSON list of the restaurants available to the app
+@app.route('/category/<int:category_id>/JSON')
+def showItemsJSON(category_id):
+
+    # Obtain a list of the restaurants available to the app
+    items = session.query(CategoryItem).filter_by(category_id=category_id).all()
+
+    # Return a JSON version of the list of restaurants available
+    return jsonify(categories=[item.serialize for item in items])
+
+@app.route('/category/new/', methods=['POST','GET'])
 def newCategory():
 
     # Check to see if a user is currently logged in to access the page
@@ -100,7 +116,7 @@ def newCategory():
 
     return render_template('newCategory.html')
 
-@app.route('/catalogue/<int:category_id>/edit/', methods=['POST','GET'])
+@app.route('/category/<int:category_id>/edit/', methods=['POST','GET'])
 def editCategory(category_id):
 
     # Check to see if a user is currently logged in to access the page
@@ -134,7 +150,7 @@ def editCategory(category_id):
 
 
 
-@app.route('/catalogue/<int:category_id>/delete/', methods=['POST','GET'])
+@app.route('/category/<int:category_id>/delete/', methods=['POST','GET'])
 def deleteCategory(category_id):
 
     # Check to see if a user is currently logged in to access the page
@@ -166,7 +182,7 @@ def deleteCategory(category_id):
     return render_template('deleteCategory.html', category_id=category_id, category=category)
 
 
-@app.route('/catalogue/<int:category_id>/<int:item_id>/', methods=['POST','GET'])
+@app.route('/category/<int:category_id>/<int:item_id>/', methods=['POST','GET'])
 def showItem(category_id, item_id):
 
     category = session.query(Category).filter_by(id=category_id).one()
@@ -182,7 +198,7 @@ def showItem(category_id, item_id):
         return render_template('item.html', category_id=category_id, item_id=item_id, category=category, item=item)
 
 
-@app.route('/catalogue/<int:category_id>/new/', methods=['POST','GET'])
+@app.route('/category/<int:category_id>/new/', methods=['POST','GET'])
 def newItem(category_id):
 
     # Check to see if a user is currently logged in to access the page
@@ -215,7 +231,7 @@ def newItem(category_id):
     return render_template('newItem.html', category_id=category_id)
 
 
-@app.route('/catalogue/<int:category_id>/edit/<int:item_id>', methods=['POST','GET'])
+@app.route('/category/<int:category_id>/edit/<int:item_id>', methods=['POST','GET'])
 def editItem(category_id, item_id):
 
     # Check to see if a user is currently logged in to access the page
@@ -254,7 +270,7 @@ def editItem(category_id, item_id):
     return render_template('editItem.html', category_id=category_id, item_id=item_id, category=category, item=item)
 
 
-@app.route('/catalogue/<int:category_id>/delete/<int:item_id>', methods=['POST','GET'])
+@app.route('/category/<int:category_id>/delete/<int:item_id>', methods=['POST','GET'])
 def deleteItem(category_id, item_id):
 
     # Check to see if a user is currently logged in to access the page
