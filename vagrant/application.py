@@ -124,6 +124,37 @@ def newItem(category_id):
     return render_template('newItem.html', category_id=category_id)
 
 
+@app.route('/catalogue/<int:category_id>/edit/<int:item_id>', methods=['POST','GET'])
+def editItem(category_id, item_id):
+
+    category = session.query(Category).filter_by(id=category_id).one()
+    item = session.query(CategoryItem).filter_by(id=item_id, category_id=category_id).one()
+
+    # Check to see if there is a POST request from the interface
+    if request.method == 'POST':
+        # Create a new category and commit it to the database
+        # title: the title entered in the form
+        # user_id: use the id of the logged in user
+        if request.form['title']:
+            item.title = request.form['title']
+        if request.form['description']:
+            item.title = request.form['description']
+
+
+        session.add(category)
+        session.commit()
+
+        flash('~*Item Edited')
+
+        return redirect(url_for('showItems', category_id=category_id))
+
+    return render_template('editItem.html', category_id=category_id, item_id=item_id, category=category, item=item)
+
+
+
+
+
+
 
 # Run the app in the localhost on port 8000
 if __name__ == '__main__':

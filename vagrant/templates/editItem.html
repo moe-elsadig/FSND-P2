@@ -1,0 +1,37 @@
+<html>
+
+  <head>
+      <!-- Link this file to the styles.css file in the static folder -->
+      <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
+    </head>
+
+  <body>
+
+    <h1>Edit an existing Item</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+          {% for message in messages %}
+
+            <li> <strong> {{ message }} </strong> </li>
+
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form action="{{url_for('editItem', category_id=category_id, item_id=item_id)}}" method = 'POST'>
+
+    <input type='text' size='30' name='title' placeholder='{{item.title}}'>
+
+    <input type='text' size='50' name='description' placeholder='{{item.description}}'>
+
+    <input type='submit' value='Add'>
+
+    <a href="{{url_for('showItems', category_id=category.id)}}">Back</a>
+
+    </body>
+
+</html>

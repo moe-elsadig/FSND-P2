@@ -42,7 +42,8 @@
         {% for item in items %}
 
 
-          <h3><a href='#'>{{item.title}}</a></h3>
+          <h3>{{item.title}}</h3>
+          <a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a>
 
         {% endfor %}
       {% endif %}
