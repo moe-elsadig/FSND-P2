@@ -28,6 +28,8 @@
 
       <h2><a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}} uid({{category.user_id}})</a></h2>
 
+      <a href="{{url_for('editCategory', category_id=category.id)}}">Edit</a>
+
       {% if items and category.id == items[0].category_id %}
 
         {% for item in items %}
