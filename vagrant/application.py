@@ -151,6 +151,25 @@ def editItem(category_id, item_id):
     return render_template('editItem.html', category_id=category_id, item_id=item_id, category=category, item=item)
 
 
+@app.route('/catalogue/<int:category_id>/delete/<int:item_id>', methods=['POST','GET'])
+def deleteItem(category_id, item_id):
+
+    category = session.query(Category).filter_by(id=category_id).one()
+    item = session.query(CategoryItem).filter_by(id=item_id, category_id=category_id).one()
+
+    # Check to see if there is a POST request from the interface
+    if request.method == 'POST':
+
+        session.delete(item)
+        session.commit()
+
+        flash('~*Item Deleted')
+
+        return redirect(url_for('showItems', category_id=category_id))
+
+    return render_template('deleteItem.html', category_id=category_id, item_id=item_id, category=category, item=item)
+
+
 
 
 
