@@ -1,0 +1,34 @@
+<html>
+
+  <head>
+      <!-- Link this file to the styles.css file in the static folder -->
+      <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
+    </head>
+
+  <body>
+
+    <h1>Item: {{item.title}}</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+          {% for message in messages %}
+
+            <li> <strong> {{ message }} </strong> </li>
+
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h2>Description:</h2>
+  </br>
+  <h3>{{item.description}}<h3>
+        <a href="{{url_for('showItems', category_id=category.id)}}">Back</a>
+        <a href="{{url_for('showCategories')}}">Home</a>
+
+
+    </body>
+
+</html>

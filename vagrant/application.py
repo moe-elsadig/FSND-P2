@@ -39,10 +39,25 @@ session = DBSession()
 @app.route('/categories/')
 def showCategories():
 
+    # try to see if a user is currently logged in and assign a value
+    # this will help toggle the login/logout buttons on a page
+    try:
+        log_user = login_session['google_user_id']
+        print("User: " + str(user))
+    except:
+        print("No user is logged in")
+
     # Obtain a list of the available categories
     categories = session.query(Category).all()
 
-    return render_template('catalogue.html', categories=categories)
+
+
+
+    # Check to see if a user is currently logged in to access the page
+    if 'username' not in login_session:
+        return render_template('publicCatalogue.html',categories=categories)
+    else:
+        return render_template('catalogue.html', categories=categories, log_in_stat=1)
 
 
 @app.route('/catalogue/<int:category_id>/')
@@ -54,17 +69,28 @@ def showItems(category_id):
     # Obtain a list of the selected category's items
     items = session.query(CategoryItem).filter_by(category_id=category_id).all()
 
-    return render_template('items.html', selected_id = category_id ,categories=categories, items=items)
+    # Check to see if a user is currently logged in to access the page
+    if 'username' not in login_session:
+        return render_template('publicItems.html', selected_id = category_id ,categories=categories, items=items)
+    else:
+        return render_template('items.html', selected_id = category_id ,categories=categories, items=items)
+
+
 
 @app.route('/catalogue/new/', methods=['POST','GET'])
 def newCategory():
+
+    # Check to see if a user is currently logged in to access the page
+    if 'username' not in login_session:
+        # If a user is not logged in redirect the user to the login page
+        return redirect('/login')
 
     # Check to see if there is a POST request from the interface
     if request.method == 'POST':
         # Create a new category and commit it to the database
         # title: the title entered in the form
         # user_id: use the id of the logged in user
-        category = Category(title=request.form['title'], user_id=request.form.get('user_id', 1))
+        category = Category(title=request.form['title'], user_id=login_session['user_id'])
         session.add(category)
         session.commit()
 
@@ -77,7 +103,19 @@ def newCategory():
 @app.route('/catalogue/<int:category_id>/edit/', methods=['POST','GET'])
 def editCategory(category_id):
 
+    # Check to see if a user is currently logged in to access the page
+    if 'username' not in login_session:
+        # If a user is not logged in redirect the user to the login page
+        return redirect('/login')
+
     category = session.query(Category).filter_by(id=category_id).one()
+    creator_id = category.user_id
+
+    # Check if the user is the owner of the restaurant
+    if login_session['user_id'] != creator_id:
+        # If a wrong user is logged in inform them
+        flash ("You don't have the permission to do that.")
+        return redirect(url_for('showCategories'))
 
     # Check to see if there is a POST request from the interface
     if request.method == 'POST':
@@ -99,7 +137,19 @@ def editCategory(category_id):
 @app.route('/catalogue/<int:category_id>/delete/', methods=['POST','GET'])
 def deleteCategory(category_id):
 
+    # Check to see if a user is currently logged in to access the page
+    if 'username' not in login_session:
+        # If a user is not logged in redirect the user to the login page
+        return redirect('/login')
+
     category = session.query(Category).filter_by(id=category_id).one()
+    creator_id = category.user_id
+
+    # Check if the user is the owner of the restaurant
+    if login_session['user_id'] != creator_id:
+        # If a wrong user is logged in inform them
+        flash ("You don't have the permission to do that.")
+        return redirect(url_for('showCategories'))
 
     # Check to see if there is a POST request from the interface
     if request.method == 'POST':
@@ -122,18 +172,39 @@ def showItem(category_id, item_id):
     category = session.query(Category).filter_by(id=category_id).one()
     item = session.query(CategoryItem).filter_by(id=item_id,category_id=category_id).one()
 
-    return render_template('item.html', category_id=category_id, item_id=item_id, category=category, item=item)
+
+
+
+    # Check to see if a user is currently logged in to access the page
+    if 'username' not in login_session:
+        return render_template('publicItem.html', category_id=category_id, item_id=item_id, category=category, item=item)
+    else:
+        return render_template('item.html', category_id=category_id, item_id=item_id, category=category, item=item)
 
 
 @app.route('/catalogue/<int:category_id>/new/', methods=['POST','GET'])
 def newItem(category_id):
+
+    # Check to see if a user is currently logged in to access the page
+    if 'username' not in login_session:
+        # If a user is not logged in redirect the user to the login page
+        return redirect('/login')
+
+    category = session.query(Category).filter_by(id=category_id).one()
+    creator_id = category.user_id
+
+    # Check if the user is the owner of the restaurant
+    if login_session['user_id'] != creator_id:
+        # If a wrong user is logged in inform them
+        flash ("You don't have the permission to do that.")
+        return redirect(url_for('showCategories'))
 
     # Check to see if there is a POST request from the interface
     if request.method == 'POST':
         # Create a new item and commit it to the database
         # title: the title entered in the form
         # user_id: use the id of the logged in user
-        item = CategoryItem(title=request.form['title'], user_id=request.form.get('user_id', 1), category_id=category_id, description=request.form['description'])
+        item = CategoryItem(title=request.form['title'], user_id=login_session['user_id'], category_id=category_id, description=request.form['description'])
         session.add(item)
         session.commit()
 
@@ -147,8 +218,20 @@ def newItem(category_id):
 @app.route('/catalogue/<int:category_id>/edit/<int:item_id>', methods=['POST','GET'])
 def editItem(category_id, item_id):
 
+    # Check to see if a user is currently logged in to access the page
+    if 'username' not in login_session:
+        # If a user is not logged in redirect the user to the login page
+        return redirect('/login')
+
     category = session.query(Category).filter_by(id=category_id).one()
     item = session.query(CategoryItem).filter_by(id=item_id, category_id=category_id).one()
+    creator_id = category.user_id
+
+    # Check if the user is the owner of the restaurant
+    if login_session['user_id'] != creator_id:
+        # If a wrong user is logged in inform them
+        flash ("You don't have the permission to do that.")
+        return redirect(url_for('showCategories'))
 
     # Check to see if there is a POST request from the interface
     if request.method == 'POST':
@@ -174,8 +257,20 @@ def editItem(category_id, item_id):
 @app.route('/catalogue/<int:category_id>/delete/<int:item_id>', methods=['POST','GET'])
 def deleteItem(category_id, item_id):
 
+    # Check to see if a user is currently logged in to access the page
+    if 'username' not in login_session:
+        # If a user is not logged in redirect the user to the login page
+        return redirect('/login')
+
     category = session.query(Category).filter_by(id=category_id).one()
     item = session.query(CategoryItem).filter_by(id=item_id, category_id=category_id).one()
+    creator_id = category.user_id
+
+    # Check if the user is the owner of the restaurant
+    if login_session['user_id'] != creator_id:
+        # If a wrong user is logged in inform them
+        flash ("You don't have the permission to do that.")
+        return redirect(url_for('showCategories'))
 
     # Check to see if there is a POST request from the interface
     if request.method == 'POST':
@@ -371,7 +466,7 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
 
         # Redirect the user to the list of restaurants
-        return redirect(url_for('showRestaurants'))
+        return redirect(url_for('showCategories'))
 
     # Verify the current login session access token with the Google server and revoke it
     url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % login_session['access_token']
@@ -391,7 +486,7 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
 
         # Redirect the user to the list of restaurants page
-        return redirect(url_for('showRestaurants'))
+        return redirect(url_for('showCategories'))
 
     # if the token is not succes revoked, inform the user
     else:
@@ -417,6 +512,10 @@ def getUserInfo(user_id):
 
 # This function is used to get the id of a user if it exists in the database
 def getUserID(email):
+
+    # # Reset the list
+    # deleteUser(email)
+
     try:
         user = session.query(User).filter_by(email=email).one()
         print("User ID is already available")
