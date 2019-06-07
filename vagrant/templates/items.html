@@ -31,6 +31,12 @@
       <a href="{{url_for('editCategory', category_id=category.id)}}">Edit</a>
       <a href="{{url_for('deleteCategory', category_id=category.id)}}">Delete</a>
 
+      {% if selected_id == category.id %}
+        <a href="{{url_for('newItem', category_id=category.id)}}">New</a>
+
+        </br></br>
+        {% endif %}
+
       {% if items and category.id == items[0].category_id %}
 
         {% for item in items %}

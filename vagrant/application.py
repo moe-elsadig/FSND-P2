@@ -42,7 +42,7 @@ def showItems(category_id):
     # Obtain a list of the selected category's items
     items = session.query(CategoryItem).filter_by(category_id=category_id).all()
 
-    return render_template('items.html', categories=categories, items=items)
+    return render_template('items.html', selected_id = category_id ,categories=categories, items=items)
 
 @app.route('/catalogue/new/', methods=['POST','GET'])
 def newCategory():
@@ -102,6 +102,26 @@ def deleteCategory(category_id):
         return redirect(url_for('showCategories'))
 
     return render_template('deleteCategory.html', category_id=category_id, category=category)
+
+
+
+@app.route('/catalogue/<int:category_id>/new/', methods=['POST','GET'])
+def newItem(category_id):
+
+    # Check to see if there is a POST request from the interface
+    if request.method == 'POST':
+        # Create a new item and commit it to the database
+        # title: the title entered in the form
+        # user_id: use the id of the logged in user
+        item = CategoryItem(title=request.form['title'], user_id=request.form.get('user_id', 1), category_id=category_id, description=request.form['description'])
+        session.add(item)
+        session.commit()
+
+        flash('~*New Item Created')
+
+        return redirect(url_for('showItems', category_id=category_id))
+
+    return render_template('newItem.html', category_id=category_id)
 
 
 
