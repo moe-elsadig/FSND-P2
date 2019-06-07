@@ -56,15 +56,18 @@ def showCategories():
     else:
         return render_template('catalogue.html', categories=categories, log_in_stat=1)
 
-# Route to: JSON list of the restaurants available to the app
+# Route to: JSON list of the categories available to the app
 @app.route('/categories/JSON')
+@app.route('/catalogue/JSON')
 def showCategoriesJSON():
 
-    # Obtain a list of the restaurants available to the app
+    # Obtain a list of the categories available to the app
     categories = session.query(Category).all()
 
-    # Return a JSON version of the list of restaurants available
+    # Return a JSON version of the list of categories available
+    # return jsonify(categories=[category.serialize for category in categories])
     return jsonify(categories=[category.serialize for category in categories])
+
 
 @app.route('/category/<int:category_id>/')
 def showItems(category_id):
@@ -83,14 +86,14 @@ def showItems(category_id):
 
 
 
-# Route to: JSON list of the restaurants available to the app
+# Route to: JSON list of the categories available to the app
 @app.route('/category/<int:category_id>/JSON')
 def showItemsJSON(category_id):
 
-    # Obtain a list of the restaurants available to the app
+    # Obtain a list of the categories available to the app
     items = session.query(CategoryItem).filter_by(category_id=category_id).all()
 
-    # Return a JSON version of the list of restaurants available
+    # Return a JSON version of the list of categories available
     return jsonify(categories=[item.serialize for item in items])
 
 @app.route('/category/new/', methods=['POST','GET'])
@@ -127,7 +130,7 @@ def editCategory(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
     creator_id = category.user_id
 
-    # Check if the user is the owner of the restaurant
+    # Check if the user is the owner of the category
     if login_session['user_id'] != creator_id:
         # If a wrong user is logged in inform them
         flash ("You don't have the permission to do that.")
@@ -161,7 +164,7 @@ def deleteCategory(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
     creator_id = category.user_id
 
-    # Check if the user is the owner of the restaurant
+    # Check if the user is the owner of the category
     if login_session['user_id'] != creator_id:
         # If a wrong user is logged in inform them
         flash ("You don't have the permission to do that.")
@@ -209,7 +212,7 @@ def newItem(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
     creator_id = category.user_id
 
-    # Check if the user is the owner of the restaurant
+    # Check if the user is the owner of the category
     if login_session['user_id'] != creator_id:
         # If a wrong user is logged in inform them
         flash ("You don't have the permission to do that.")
@@ -243,7 +246,7 @@ def editItem(category_id, item_id):
     item = session.query(CategoryItem).filter_by(id=item_id, category_id=category_id).one()
     creator_id = category.user_id
 
-    # Check if the user is the owner of the restaurant
+    # Check if the user is the owner of the category
     if login_session['user_id'] != creator_id:
         # If a wrong user is logged in inform them
         flash ("You don't have the permission to do that.")
@@ -282,7 +285,7 @@ def deleteItem(category_id, item_id):
     item = session.query(CategoryItem).filter_by(id=item_id, category_id=category_id).one()
     creator_id = category.user_id
 
-    # Check if the user is the owner of the restaurant
+    # Check if the user is the owner of the category
     if login_session['user_id'] != creator_id:
         # If a wrong user is logged in inform them
         flash ("You don't have the permission to do that.")
@@ -481,7 +484,7 @@ def gdisconnect():
         response = make_response(json.dumps('Current user not connected.'), 401)
         response.headers['Content-Type'] = 'application/json'
 
-        # Redirect the user to the list of restaurants
+        # Redirect the user to the list of categories
         return redirect(url_for('showCategories'))
 
     # Verify the current login session access token with the Google server and revoke it
@@ -501,7 +504,7 @@ def gdisconnect():
         response = make_response(json.dumps('Successfully disconnected.'), 200)
         response.headers['Content-Type'] = 'application/json'
 
-        # Redirect the user to the list of restaurants page
+        # Redirect the user to the list of categories page
         return redirect(url_for('showCategories'))
 
     # if the token is not succes revoked, inform the user
@@ -509,7 +512,7 @@ def gdisconnect():
         response = make_response(json.dumps('Failed to revoke token for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
 
-        # Redirect the user to the list of restaurants page
+        # Redirect the user to the list of categories page
         return redirect(url_for('showCategories'))
 
 

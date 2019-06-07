@@ -27,10 +27,10 @@
   <h3>{{item.description}}<h3>
 
 
-    <a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a>
-    <a href='{{url_for('deleteItem', category_id=category.id, item_id=item.id) }}' >Delete</a>
-        <a href="{{url_for('showItems', category_id=category.id)}}">Back</a>
-        <a href="{{url_for('showCategories')}}">Home</a>
+    <button><a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a></button>
+    <button><a href='{{url_for('deleteItem', category_id=category.id, item_id=item.id) }}' >Delete</a></button>
+    <button><a href="{{url_for('showItems', category_id=category.id)}}">Back</a></button>
+    <button><a href="{{url_for('showCategories')}}">Home</a></button>
 
 
     </body>

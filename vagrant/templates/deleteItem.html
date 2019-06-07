@@ -28,7 +28,7 @@
     <h2>Are you sure you want to delete the "{{item.title}}" item from the "{{category.title}} category"?</h2>
     <input type='submit' value='Confirm'>
 
-    <a href="{{url_for('showItems', category_id=category_id, item_id=item.id)}}">Back</a>
+    <button><a href="{{url_for('showItems', category_id=category_id, item_id=item.id)}}">Back</a></button>
 
     </body>
 

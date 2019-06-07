@@ -11,9 +11,9 @@
 
     <!-- Check if a user is logged in and show the correct button -->
     {% if log_in_stat == None %}
-    <a href={{url_for('showLogin')}} ><h3>LOGIN</h3></a>
+    <button><a href={{url_for('showLogin')}} ><h3>LOGIN</h3></a></button>
     {% else %}
-    <a href={{url_for('gdisconnect')}} ><h3>LOGOUT</h3></a>
+    <button><a href={{url_for('gdisconnect')}} ><h3>LOGOUT</h3></a></button>
     {% endif %}
 
     {% with messages = get_flashed_messages() %}
@@ -29,17 +29,17 @@
       {% endif %}
     {% endwith %}
 
-    <a href="{{url_for('newCategory')}}">Add a new Category</a>
+    <button><a href="{{url_for('newCategory')}}">Add a new Category</a></button>
 
     {% for category in categories %}
 
       <h2><a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}} uid({{category.user_id}})</a></h2>
 
-      <a href="{{url_for('editCategory', category_id=category.id)}}">Edit</a>
-      <a href="{{url_for('deleteCategory', category_id=category.id)}}">Delete</a>
+      <button><a href="{{url_for('editCategory', category_id=category.id)}}">Edit</a></button>
+      <button><a href="{{url_for('deleteCategory', category_id=category.id)}}">Delete</a></button>
 
       {% if selected_id == category.id %}
-        <a href="{{url_for('newItem', category_id=category.id)}}">New</a>
+        <button><a href="{{url_for('newItem', category_id=category.id)}}">New</a></button>
 
         </br></br>
         {% endif %}
@@ -50,8 +50,8 @@
 
 
           <h3><a href='{{url_for('showItem', category_id=category.id, item_id=item.id) }}' >{{item.title}}</h3></a>
-          <a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a>
-          <a href='{{url_for('deleteItem', category_id=category.id, item_id=item.id) }}' >Delete</a>
+          <button><a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a></button>
+          <button><a href='{{url_for('deleteItem', category_id=category.id, item_id=item.id) }}' >Delete</a></button>
 
         {% endfor %}
       {% endif %}
