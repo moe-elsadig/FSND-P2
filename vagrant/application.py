@@ -15,8 +15,6 @@ import httplib2
 import json
 import requests
 
-
-
 app = Flask(__name__)
 
 # Define the name of the application
@@ -26,13 +24,11 @@ APPLICATION_NAME = "Catalogue Web App"
 CLIENT_ID = json.loads(
     open('client_secrets.json', 'r').read())['web']['client_id']
 
-
 # Connect to Database and create a database session
 engine = create_engine('sqlite:///catalogue.db',connect_args={'check_same_thread': False})
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-
 
 @app.route('/')
 @app.route('/catalogue/')
@@ -50,11 +46,15 @@ def showCategories():
     # Obtain a list of the available categories
     categories = session.query(Category).all()
 
-    # Check to see if a user is currently logged in to access the page
+    all_items = session.query(CategoryItem).all()
+    all_items = all_items[::-1]
+    latest_items = all_items[:9]
+
+    # Check to see if a user is currently logged in to access the correct page
     if 'username' not in login_session:
-        return render_template('publicCatalogue.html',categories=categories)
+        return render_template('publicCatalogue.html',categories=categories, latest_items=latest_items)
     else:
-        return render_template('catalogue.html', categories=categories, log_in_stat=1)
+        return render_template('catalogue.html', categories=categories, log_in_stat=1, latest_items=latest_items)
 
 # Route to: JSON list of the categories available to the app
 @app.route('/categories/JSON')
@@ -65,9 +65,7 @@ def showCategoriesJSON():
     categories = session.query(Category).all()
 
     # Return a JSON version of the list of categories available
-    # return jsonify(categories=[category.serialize for category in categories])
     return jsonify(categories=[category.serialize for category in categories])
-
 
 @app.route('/category/<int:category_id>/')
 def showItems(category_id):
@@ -84,8 +82,6 @@ def showItems(category_id):
     else:
         return render_template('items.html', selected_id = category_id ,categories=categories, items=items)
 
-
-
 # Route to: JSON list of the categories available to the app
 @app.route('/category/<int:category_id>/JSON')
 def showItemsJSON(category_id):
@@ -93,7 +89,7 @@ def showItemsJSON(category_id):
     # Obtain a list of the categories available to the app
     items = session.query(CategoryItem).filter_by(category_id=category_id).all()
 
-    # Return a JSON version of the list of categories available
+    # Return a JSON version of the list of the items available to a category
     return jsonify(categories=[item.serialize for item in items])
 
 @app.route('/category/new/', methods=['POST','GET'])
@@ -113,6 +109,7 @@ def newCategory():
         session.add(category)
         session.commit()
 
+        # Notify the user
         flash('~*New Category Created')
 
         return redirect(url_for('showCategories'))
@@ -145,13 +142,12 @@ def editCategory(category_id):
         session.add(category)
         session.commit()
 
+        # Notfiy the user
         flash('~*Category Edited')
 
         return redirect(url_for('showCategories'))
 
     return render_template('editCategory.html', category_id=category_id, category=category)
-
-
 
 @app.route('/category/<int:category_id>/delete/', methods=['POST','GET'])
 def deleteCategory(category_id):
@@ -178,21 +174,18 @@ def deleteCategory(category_id):
         session.delete(category)
         session.commit()
 
+        # Notify the user
         flash('~*Category Deleted')
 
         return redirect(url_for('showCategories'))
 
     return render_template('deleteCategory.html', category_id=category_id, category=category)
 
-
-@app.route('/category/<int:category_id>/<int:item_id>/', methods=['POST','GET'])
+@app.route('/category/<int:category_id>/item/<int:item_id>/', methods=['POST','GET'])
 def showItem(category_id, item_id):
 
     category = session.query(Category).filter_by(id=category_id).one()
     item = session.query(CategoryItem).filter_by(id=item_id,category_id=category_id).one()
-
-
-
 
     # Check to see if a user is currently logged in to access the page
     if 'username' not in login_session:
@@ -200,8 +193,16 @@ def showItem(category_id, item_id):
     else:
         return render_template('item.html', category_id=category_id, item_id=item_id, category=category, item=item)
 
+@app.route('/category/<int:category_id>/item/<int:item_id>/JSON', methods=['POST','GET'])
+def showItemJSON(category_id, item_id):
 
-@app.route('/category/<int:category_id>/new/', methods=['POST','GET'])
+    # Obtain a list of the categories available to the app
+    item = session.query(CategoryItem).filter_by(id=item_id, category_id=category_id).one()
+
+    # Return a JSON version of the list of categories available
+    return jsonify(Item=[item.serialize])
+
+@app.route('/category/<int:category_id>/item/new/', methods=['POST','GET'])
 def newItem(category_id):
 
     # Check to see if a user is currently logged in to access the page
@@ -227,14 +228,14 @@ def newItem(category_id):
         session.add(item)
         session.commit()
 
+        # Notify the user
         flash('~*New Item Created')
 
         return redirect(url_for('showItems', category_id=category_id))
 
     return render_template('newItem.html', category_id=category_id)
 
-
-@app.route('/category/<int:category_id>/edit/<int:item_id>', methods=['POST','GET'])
+@app.route('/category/<int:category_id>/item/<int:item_id>/edit', methods=['POST','GET'])
 def editItem(category_id, item_id):
 
     # Check to see if a user is currently logged in to access the page
@@ -262,18 +263,17 @@ def editItem(category_id, item_id):
         if request.form['description']:
             item.title = request.form['description']
 
-
         session.add(category)
         session.commit()
 
+        # Notify the user
         flash('~*Item Edited')
 
         return redirect(url_for('showItems', category_id=category_id))
 
     return render_template('editItem.html', category_id=category_id, item_id=item_id, category=category, item=item)
 
-
-@app.route('/category/<int:category_id>/delete/<int:item_id>', methods=['POST','GET'])
+@app.route('/category/<int:category_id>/item/<int:item_id>/delete', methods=['POST','GET'])
 def deleteItem(category_id, item_id):
 
     # Check to see if a user is currently logged in to access the page
@@ -297,33 +297,12 @@ def deleteItem(category_id, item_id):
         session.delete(item)
         session.commit()
 
+        # Notify the user
         flash('~*Item Deleted')
 
         return redirect(url_for('showItems', category_id=category_id))
 
     return render_template('deleteItem.html', category_id=category_id, item_id=item_id, category=category, item=item)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Route to: Application login page
 @app.route('/login')
@@ -515,8 +494,6 @@ def gdisconnect():
         # Redirect the user to the list of categories page
         return redirect(url_for('showCategories'))
 
-
-
 # This function is used to create a new user and commit them to the database
 def createUser(login_session):
     newUser = User(name = login_session['username'], email = login_session['email'], picture = login_session['picture'])
@@ -531,9 +508,6 @@ def getUserInfo(user_id):
 
 # This function is used to get the id of a user if it exists in the database
 def getUserID(email):
-
-    # # Reset the list
-    # deleteUser(email)
 
     try:
         user = session.query(User).filter_by(email=email).one()
@@ -554,15 +528,6 @@ def deleteUser(email):
 
     users = session.query(User).filter_by(email=email).all()
     print (users)
-
-
-
-
-
-
-
-
-
 
 # Run the app in the localhost on port 8000
 if __name__ == '__main__':

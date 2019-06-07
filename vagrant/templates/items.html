@@ -29,13 +29,22 @@
       {% endif %}
     {% endwith %}
 
+    <h2> Latest Items: </h2>
+
+    {% for item in items %}
+
+      <h3><a href='{{url_for('showItem', category_id=category.id, item_id=item.id) }}' >{{item.title}}</h3></a>
+
+      {% endfor %}
+
     <button><a href="{{url_for('newCategory')}}">Add a new Category</a></button>
 
     {% for category in categories %}
 
-      <h2><a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}} uid({{category.user_id}})</a></h2>
+      <h2><a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a></h2>
 
       <button><a href="{{url_for('editCategory', category_id=category.id)}}">Edit</a></button>
+
       <button><a href="{{url_for('deleteCategory', category_id=category.id)}}">Delete</a></button>
 
       {% if selected_id == category.id %}
@@ -50,12 +59,13 @@
 
 
           <h3><a href='{{url_for('showItem', category_id=category.id, item_id=item.id) }}' >{{item.title}}</h3></a>
+
           <button><a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a></button>
+
           <button><a href='{{url_for('deleteItem', category_id=category.id, item_id=item.id) }}' >Delete</a></button>
 
         {% endfor %}
       {% endif %}
-
 
       </br></br>
 

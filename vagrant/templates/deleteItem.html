@@ -22,10 +22,10 @@
       {% endif %}
     {% endwith %}
 
-
     <form action="{{url_for('deleteItem', category_id=category_id, item_id=item_id)}}" method = 'POST'>
 
     <h2>Are you sure you want to delete the "{{item.title}}" item from the "{{category.title}} category"?</h2>
+
     <input type='submit' value='Confirm'>
 
     <button><a href="{{url_for('showItems', category_id=category_id, item_id=item.id)}}">Back</a></button>
