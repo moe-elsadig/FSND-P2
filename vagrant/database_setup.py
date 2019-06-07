@@ -1,0 +1,81 @@
+# Configuration - import all of the necessary modules
+import sys
+from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy import create_engine
+
+Base = declarative_base()
+
+
+# Class - represent the data in python
+class User(Base):
+
+    # Table - represents the specific table in the database
+    __tablename__ = 'user'
+
+    # Mapping - connects the columns of the table to the class that represents it
+    name = Column(String(250), nullable = False)
+    id = Column(Integer, primary_key = True)
+    email = Column(String(250), nullable = False)
+    picture = Column(String(250))
+
+
+# Class - represent the data in python
+class Category(Base):
+
+    # Table - represents the specific table in the database
+    __tablename__ = 'category'
+
+    # Mapping - connects the columns of the table to the class that represents it
+    title = Column(String(80), nullable = False)
+    id = Column(Integer, primary_key = True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
+
+    # Helps to return the json version of the call
+    @property
+    def serialize(self):
+        #Returns object data in easily serializeable format
+        return {
+            'title' : self.title,
+            'id' : self.id,
+            'user_id' : self.user_id
+        }
+
+# Class - represent the data in python
+class CategoryItem(Base):
+
+    # Table - represents the specific table in the database
+    __tablename__ = 'category_item'
+
+    # Mapping - connects the columns of the table to the class that represents it
+    title = Column(String(80), nullable = False)
+    id = Column(Integer, primary_key = True)
+    description = Column(String(250))
+    category_id = Column(Integer, ForeignKey('category.id'))
+    category = relationship(Category)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
+
+    @property
+    def serialize(self):
+        #Returns object data in easily serializeable format
+        return {
+            'title' : self.title,
+            'description' : self.description,
+            'id' : self.id,
+            'category_id' : self.category_id,
+            'user_id' : self.user_id
+        }
+
+# Configuration - End of file
+engine = create_engine('sqlite:///catalogue.db')
+
+Base.metadata.create_all(engine)
+
+Base.metadata.bind = engine
+
+DBSession = sessionmaker(bind=engine)
+
+session = DBSession()
