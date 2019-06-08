@@ -73,14 +73,16 @@ def showItems(category_id):
     # Obtain a list of the available categories
     categories = session.query(Category).all()
 
+    category = session.query(Category).filter_by(id=category_id).one()
+
     # Obtain a list of the selected category's items
     items = session.query(CategoryItem).filter_by(category_id=category_id).all()
 
     # Check to see if a user is currently logged in to access the page
     if 'username' not in login_session:
-        return render_template('publicItems.html', selected_id = category_id ,categories=categories, items=items)
+        return render_template('publicItems.html', category=category, selected_id = category_id ,categories=categories, items=items)
     else:
-        return render_template('items.html', selected_id = category_id ,categories=categories, items=items)
+        return render_template('items.html',category=category, selected_id = category_id ,categories=categories, items=items)
 
 # Route to: JSON list of the categories available to the app
 @app.route('/category/<int:category_id>/JSON')
