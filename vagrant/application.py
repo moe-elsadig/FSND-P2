@@ -95,7 +95,7 @@ def showItems(category_id):
     # Obtain a list of the available categories
     categories = session.query(Category).all()
 
-    category = session.query(Category).filter_by(id=category_id).one()
+    category = session.query(Category).filter_by(id=category_id).one_or_none()
 
     # Obtain a list of the selected category's items
     items = session.query(CategoryItem).filter_by(
@@ -156,7 +156,7 @@ def newCategory():
 @login_required
 def editCategory(category_id):
 
-    category = session.query(Category).filter_by(id=category_id).one()
+    category = session.query(Category).filter_by(id=category_id).one_or_none()
     creator_id = category.user_id
 
     # Check if the user is the owner of the category
@@ -187,7 +187,7 @@ def editCategory(category_id):
 @login_required
 def deleteCategory(category_id):
 
-    category = session.query(Category).filter_by(id=category_id).one()
+    category = session.query(Category).filter_by(id=category_id).one_or_none()
     creator_id = category.user_id
 
     # Check if the user is the owner of the category
@@ -217,9 +217,9 @@ def deleteCategory(category_id):
            methods=['POST', 'GET'])
 def showItem(category_id, item_id):
 
-    category = session.query(Category).filter_by(id=category_id).one()
+    category = session.query(Category).filter_by(id=category_id).one_or_none()
     item = session.query(CategoryItem).filter_by(
-        id=item_id, category_id=category_id).one()
+        id=item_id, category_id=category_id).one_or_none()
 
     # Check to see if a user is currently logged in to access the page
     if 'username' not in login_session:
@@ -236,7 +236,7 @@ def showItemJSON(category_id, item_id):
 
     # Obtain a list of the categories available to the app
     item = session.query(CategoryItem).filter_by(
-        id=item_id, category_id=category_id).one()
+        id=item_id, category_id=category_id).one_or_none()
 
     # Return a JSON version of the list of categories available
     return jsonify(Item=[item.serialize])
@@ -246,7 +246,7 @@ def showItemJSON(category_id, item_id):
 @login_required
 def newItem(category_id):
 
-    category = session.query(Category).filter_by(id=category_id).one()
+    category = session.query(Category).filter_by(id=category_id).one_or_none()
     creator_id = category.user_id
 
     # Check if the user is the owner of the category
@@ -285,9 +285,9 @@ def newItem(category_id):
 @login_required
 def editItem(category_id, item_id):
 
-    category = session.query(Category).filter_by(id=category_id).one()
+    category = session.query(Category).filter_by(id=category_id).one_or_none()
     item = session.query(CategoryItem).filter_by(
-        id=item_id, category_id=category_id).one()
+        id=item_id, category_id=category_id).one_or_none()
     creator_id = category.user_id
 
     # Check if the user is the owner of the category
@@ -323,9 +323,9 @@ def editItem(category_id, item_id):
 @login_required
 def deleteItem(category_id, item_id):
 
-    category = session.query(Category).filter_by(id=category_id).one()
+    category = session.query(Category).filter_by(id=category_id).one_or_none()
     item = session.query(CategoryItem).\
-        filter_by(id=item_id, category_id=category_id).one()
+        filter_by(id=item_id, category_id=category_id).one_or_none()
     creator_id = category.user_id
 
     # Check if the user is the owner of the category
@@ -576,15 +576,15 @@ def createUser(login_session):
 
 # This function is used to get the info of a user from the database
 def getUserInfo(user_id):
-    user = session.query(User).filter_by(id=user_id).one()
+    user = session.query(User).filter_by(id=user_id).one_or_none()
     return user
 
 
 # This function is used to get the id of a user if it exists in the database
 def getUserID(email):
 
-    if session.query(User).filter_by(email=email).one():
-        user = session.query(User).filter_by(email=email).one()
+    if session.query(User).filter_by(email=email).one_or_none():
+        user = session.query(User).filter_by(email=email).one_or_none()
         print("User ID is already available")
         return user.id
     else:
