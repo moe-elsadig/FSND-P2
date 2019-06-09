@@ -107,14 +107,19 @@ def newCategory():
         # Create a new category and commit it to the database
         # title: the title entered in the form
         # user_id: use the id of the logged in user
-        category = Category(title=request.form['title'], user_id=login_session['user_id'])
-        session.add(category)
-        session.commit()
+        if request.form['title'] != '':
 
-        # Notify the user
-        flash('~*New Category Created')
+            category = Category(title=request.form['title'], user_id=login_session['user_id'])
+            session.add(category)
+            session.commit()
 
-        return redirect(url_for('showCategories'))
+            # Notify the user
+            flash('~*New Category Created')
+
+            return redirect(url_for('showCategories'))
+        else:
+            flash('a valid input has not been made')
+            return render_template('newCategory.html')
 
     return render_template('newCategory.html')
 
@@ -226,14 +231,19 @@ def newItem(category_id):
         # Create a new item and commit it to the database
         # title: the title entered in the form
         # user_id: use the id of the logged in user
-        item = CategoryItem(title=request.form['title'], user_id=login_session['user_id'], category_id=category_id, description=request.form['description'])
-        session.add(item)
-        session.commit()
+        if request.form['title'] != '' and request.form['description'] != '':
 
-        # Notify the user
-        flash('~*New Item Created')
+            item = CategoryItem(title=request.form['title'], user_id=login_session['user_id'], category_id=category_id, description=request.form['description'])
+            session.add(item)
+            session.commit()
 
-        return redirect(url_for('showItems', category_id=category_id))
+            # Notify the user
+            flash('~*New Item Created')
+
+            return redirect(url_for('showItems', category_id=category_id))
+        else:
+            flash('your input was invalid, please try again')
+            return render_template('newItem.html', category_id=category_id)
 
     return render_template('newItem.html', category_id=category_id)
 
