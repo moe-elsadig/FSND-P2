@@ -17,6 +17,7 @@ import string
 import httplib2
 import json
 import requests
+from functools import wraps
 
 app = Flask(__name__)
 
@@ -33,6 +34,18 @@ engine = create_engine('sqlite:///catalogue.db',
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+
+# Check if the user is already logged in
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' in login_session:
+            return f(*args, **kwargs)
+        else:
+            flash("You are not allowed to access there")
+            return redirect('/login')
+    return decorated_function
 
 
 @app.route('/')
@@ -113,12 +126,8 @@ def showItemsJSON(category_id):
 
 
 @app.route('/category/new/', methods=['POST', 'GET'])
+@login_required
 def newCategory():
-
-    # Check to see if a user is currently logged in to access the page
-    if 'username' not in login_session:
-        # If a user is not logged in redirect the user to the login page
-        return redirect('/login')
 
     # Check to see if there is a POST request from the interface
     if request.method == 'POST':
@@ -144,12 +153,8 @@ def newCategory():
 
 
 @app.route('/category/<int:category_id>/edit/', methods=['POST', 'GET'])
+@login_required
 def editCategory(category_id):
-
-    # Check to see if a user is currently logged in to access the page
-    if 'username' not in login_session:
-        # If a user is not logged in redirect the user to the login page
-        return redirect('/login')
 
     category = session.query(Category).filter_by(id=category_id).one()
     creator_id = category.user_id
@@ -179,12 +184,8 @@ def editCategory(category_id):
 
 
 @app.route('/category/<int:category_id>/delete/', methods=['POST', 'GET'])
+@login_required
 def deleteCategory(category_id):
-
-    # Check to see if a user is currently logged in to access the page
-    if 'username' not in login_session:
-        # If a user is not logged in redirect the user to the login page
-        return redirect('/login')
 
     category = session.query(Category).filter_by(id=category_id).one()
     creator_id = category.user_id
@@ -242,12 +243,8 @@ def showItemJSON(category_id, item_id):
 
 
 @app.route('/category/<int:category_id>/item/new/', methods=['POST', 'GET'])
+@login_required
 def newItem(category_id):
-
-    # Check to see if a user is currently logged in to access the page
-    if 'username' not in login_session:
-        # If a user is not logged in redirect the user to the login page
-        return redirect('/login')
 
     category = session.query(Category).filter_by(id=category_id).one()
     creator_id = category.user_id
@@ -285,12 +282,8 @@ def newItem(category_id):
 
 @app.route('/category/<int:category_id>/item/<int:item_id>/edit',
            methods=['POST', 'GET'])
+@login_required
 def editItem(category_id, item_id):
-
-    # Check to see if a user is currently logged in to access the page
-    if 'username' not in login_session:
-        # If a user is not logged in redirect the user to the login page
-        return redirect('/login')
 
     category = session.query(Category).filter_by(id=category_id).one()
     item = session.query(CategoryItem).filter_by(
@@ -327,12 +320,8 @@ def editItem(category_id, item_id):
 
 @app.route('/category/<int:category_id>/item/<int:item_id>/delete',
            methods=['POST', 'GET'])
+@login_required
 def deleteItem(category_id, item_id):
-
-    # Check to see if a user is currently logged in to access the page
-    if 'username' not in login_session:
-        # If a user is not logged in redirect the user to the login page
-        return redirect('/login')
 
     category = session.query(Category).filter_by(id=category_id).one()
     item = session.query(CategoryItem).\
