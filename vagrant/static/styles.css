@@ -1,9 +1,29 @@
+.design-border{
+    border: 1px solid black ;
+}
+.login-btn{
+    padding: none;
+    float: right;
+    max-width: 10%;
+}
+.site-name {
+    float: left;
+    max-width: 50%;
+}
+.header-content {
+    margin: 15px;
+    padding: 15px;
+    width: 960px;
+}
+.flex-container {
+    display: flex;
+}
+
 header {
     font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    color: #697681;
-
-    background: white;
+    color: #ffffff;
+    background: #fa5757;
     height: 85px;
     padding: 15px;
-    }
+    max-width: 1300px;
+}

@@ -8,10 +8,10 @@
   <body>
     <header>
       <h1>Catalogue</h1>
-    </header>
 
       <!-- Check if a user is logged in and show the correct button -->
       <button><a href={{url_for('showLogin')}} ><h3>LOGIN</h3></a></button>
+    </header>
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
