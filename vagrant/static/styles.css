@@ -1,0 +1,9 @@
+header {
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    color: #697681;
+
+    background: white;
+    height: 85px;
+    padding: 15px;
+    }
