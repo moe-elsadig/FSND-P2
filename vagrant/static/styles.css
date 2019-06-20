@@ -1,29 +1,38 @@
-.design-border{
-    border: 1px solid black ;
+.space-between {
+  justify-content: space-between;
 }
-.login-btn{
-    padding: none;
-    float: right;
-    max-width: 10%;
-}
-.site-name {
-    float: left;
-    max-width: 50%;
+
+.logo {
+    width: 200px;
+    height:35px;
+    display: inline-block;
+    margin: 10px 0px
 }
 .header-content {
-    margin: 15px;
-    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
     width: 960px;
 }
 .flex-container {
     display: flex;
 }
 
+.vertical-centerer {
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+
 header {
-    font-weight: 400;
+    font-weight: 100;
     color: #ffffff;
     background: #fa5757;
     height: 85px;
     padding: 15px;
-    max-width: 1300px;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #ddd;
 }
