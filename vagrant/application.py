@@ -66,7 +66,7 @@ def showCategories():
 
     all_items = session.query(CategoryItem).all()
     all_items = all_items[::-1]
-    latest_items = all_items[:9]
+    latest_items = all_items[:18]
 
     # Check to see if a user is currently logged in to access the correct page
     if 'username' not in login_session:
