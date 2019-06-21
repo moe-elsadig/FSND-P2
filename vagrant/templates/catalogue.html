@@ -6,14 +6,14 @@
     </head>
   <body>
     <header>
-      <div class="flex-container vertical-centerer" style="background: cornflowerblue">
-        <div  class="flex-container space-between header-content" style="background: chocolate">
-          <div style="background: burlywood">
+      <div class="flex-container vertical-centerer">
+        <div  class="flex-container space-between header-content" >
+          <div>
             <span>
                 <h1>Catalogue App</h1>
             </span>
           </div>
-          <div style="background: darkcyan">
+          <div>
             <!-- Check if a user is logged in and show the correct button -->
             {% if log_in_stat == None %}
               <h2><a href={{url_for('showLogin')}} >LOGIN</a></h2>
@@ -24,46 +24,44 @@
         </div>
       </div>
     </header>
-    
-    <div class="notification-bar">
-
-    </div>
-
-
-    {% with messages = get_flashed_messages() %}
+    <div class="notification-bar flex-container">
+      {% with messages = get_flashed_messages() %}
       {% if messages %}
-
         <ul>
-          {% for message in messages %}
-
-            <li> <strong> {{ message }} </strong> </li>
-
-          {% endfor %}
-        </ul>
+        {% for message in messages %}
+          <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul> 
       {% endif %}
     {% endwith %}
+    </div>
+    <div class="flex-container body-content" style="background: darkred">
+      <!-- The list of categories -->
+      <div class="body-content-section" style="background: darkmagenta">
+        <h2 class="category-card"><a href="{{url_for('newCategory')}}">Add a new Category</a></h2>
+        {% for category in categories %}
+          <div>
+            <div class="category-card">
+              <h2><a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a></h2>
+              <div class="category-buttons">
+                <h3><a href="{{url_for('editCategory', category_id=category.id)}}">Edit</a></h3>
+                <h3><a href="{{url_for('deleteCategory', category_id=category.id)}}">Delete</a></h3>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <!-- The latest items, filled in the category items list -->
+      <div class="body-content-section" style="background: darkorchid">
+        <ul>
+          <h2>Items</h2>
+          {% for item in latest_items %}
+            <li class="category-card">{{item.title}}</p>
+          {% endfor %}  
+        </ul>
+      </div>
+    </div>
 
-    <h2> Latest Items: </h2>
-
-    {% for item in latest_items %}
-
-      <p>{{item.title}}</p>
-
-      {% endfor %}
-
-    <a href="{{url_for('newCategory')}}">Add a new Category</a>
-
-    {% for category in categories %}
-
-      <h2><a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a></h2>
-
-      <button><a href="{{url_for('editCategory', category_id=category.id)}}">Edit</a></button>
-
-      <button><a href="{{url_for('deleteCategory', category_id=category.id)}}">Delete</a></button>
-
-      </br></br>
-
-    {% endfor %}
 
     </body>
 

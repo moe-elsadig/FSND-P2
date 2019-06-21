@@ -23,6 +23,46 @@
     justify-content: center;
   }
 
+.notification-bar {
+    font-size: small;
+    background: #e02727;
+    color: white;
+    font-style: italic;
+    height: fit-content
+}
+
+.body-content {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.body-content-section {
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    width: 50%
+}
+
+.category-card {
+    background: white;
+    padding: 25px;
+    margin:5px;
+    height: fit-content;
+}
+.category-buttons {
+    display: inline-block;
+    background: green;
+}
+.menu {
+  list-style: none;
+  list-style-type: none;
+}
+
+.menu > li {
+  display: list-item;
+}
+
 header {
     font-weight: 100;
     color: #ffffff;
