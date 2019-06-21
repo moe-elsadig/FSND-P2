@@ -8,7 +8,7 @@
 
     <div class="header">
       <div>
-          <a href="#default" class="logo">Catalogue WebApp</a>
+          <a style="background:#eee" href="{{url_for("showCategories")}}" class="logo">Catalogue WebApp</a>
       </div>
       <div class="header-right">
           <a class="active" href={{url_for('showLogin')}} >Login</a>
@@ -34,6 +34,7 @@
               {% endfor %}
           </div>
         </div>
+
         <div class="content-right">
           <h2 class="content-section-title">Latest Items Added</h2>
           <div>
@@ -41,7 +42,6 @@
               <div class="flip-card">
                 <div class="flip-card-inner">
                   <div class="flip-card-front">
-                    <!-- <img src="/vagrant/images/avatar.png" alt="avatar" style="width:300px;height:200px;"> -->
                     <h3>{{item.title}}</h3>
                   </div>
                   <div class="flip-card-back">

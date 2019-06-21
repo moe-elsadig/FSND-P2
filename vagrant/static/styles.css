@@ -1,5 +1,6 @@
 .header {
-  background: #f1f1f1;
+  font-family: Arial, Helvetica, sans-serif;
+  background: white;
   overflow: hidden;
   padding: 20px 10px;
   max-width: 960px;
@@ -7,42 +8,44 @@
 }
 .header a {
   float: left;
-  color: black;
+  color: gray;
   text-align: center;
   padding: 12px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 28px;
   line-height: 25px;
   border-radius: 4px;
 }
 .header a.logo {
-  font-size: 25px;
-  font-weight: bold;
+  font-size: 45px;
+  font-weight: 300;
 }
 .header a:hover{
-  background-color: #ddd;
+  background-color: white;
   color: black;
 }
 .header a.active{
-  background: dodgerblue;
-  color: white;
+  background: #FFF0EF;
+  color: gray;
 }
 .header-right {
   float: right;
 }
 .content {
-  background: gray;
+  font-family: Arial, Helvetica, sans-serif;
+  background: white;
 }
 .content-left {
   float:left;
+  padding: 4px
 }
 .content-right {
   float: none;
   overflow: hidden;
+  padding: 4px
 }
 .content-right a {
   float: left;
-  background-color: pink;
   display: block;
   height: 200px;
   width: 300px;
@@ -50,37 +53,40 @@
 .content-right div.flip-card {
   float: left;
   display: block;
+  padding: 4px
 }
 .content-section-title {
-  background: Black;
-  color: white;
+  background: #FFF0EF;
+  color: black;
   height: 50px;
-  padding: 5px;
-  margin: auto;
+  padding: 12px;
+  margin: 4px;
   text-align: center;
+  font-weight: 150;
 }
 .vertical-menu {
   width: 200px;
 }
 .vertical-menu a {
-  background-color: #eee;
+  background-color: #FFF0EF;
   color: black;
   display: block;
   padding: 12px;
+  margin: 4px;
   text-decoration: none;
 }
 .vertical-menu a:hover {
-  background-color: #ccc;
+  background-color: white;
 }
 .vertical-menu a.active {
-  background-color: #4CAF50;
-  color: white;
+  background-color: white;
+  color: black;
 }
 .flip-card {
   background-color: transparent;
   width: 300px;
   height: 200px;
-  border: 1px solid #f1f1f1;
+  border: 1px solid white;
   perspective: 1000px;
 }
 .flip-card-inner {
@@ -101,12 +107,12 @@
   backface-visibility: hidden;
 }
 .flip-card-front {
-  background-color: #bbb;
+  background-color: #FFF0EF;
   color: black;
 }
 .flip-card-back {
-  background: dodgerblue;
-  color: white;
+  background: #FFF0EF;
+  color: black;
   transform: rotateY(180deg);
 }
 @media screen and (max-width: 500px){
@@ -118,7 +124,15 @@
   .header-right {
     float:none;
   }
+  .header {
+    float:none;
+  }
   .content-right {
     float:none;
+  }
+  .content-right a {
+    float: none;
+    display: block;
+    text-align: left
   }
 }
