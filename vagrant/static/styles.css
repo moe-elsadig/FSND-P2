@@ -74,6 +74,18 @@
   padding: 12px;
   margin: 4px;
   text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip
+}
+.vertical-menu a.mini {
+  background-color: #FFF0EF;
+  color: black;
+  display: inline-block;
+  width: 40%;
+  padding: 12px;
+  margin: 4px;
+  text-decoration: none;
 }
 .vertical-menu a:hover {
   background-color: white;
@@ -114,6 +126,21 @@
   background: #FFF0EF;
   color: black;
   transform: rotateY(180deg);
+}
+.mod-btn {
+  float:right;
+  width: 10px;
+  cursor: pointer;
+  background: #FFF0EF;
+  vertical-align: middle;
+}
+.mod-btn img {
+  width: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.edit-btn:hover {
+  background: white;
 }
 @media screen and (max-width: 500px){
   .header a {
