@@ -7,6 +7,8 @@
         background: #f1f1f1;
         overflow: hidden;
         padding: 20px 10px;
+        max-width: 960px;
+        margin: auto;
       }
       .header a {
         float: left;
@@ -34,8 +36,17 @@
         float: right;
       }
       .content {
-        display: block;
-        background: darkolivegreen;
+        background: gray;
+      }
+      .content-left {
+        float:left;
+      }
+      .content-right {
+        float: right;
+      }
+      .vertical-menu {
+        text-decoration: none;
+        list-style: none;
       }
       @media screen and (max-width: 500px){
         .header a {
@@ -58,30 +69,35 @@
           <a class="active" href="#" >Login</a>
       </div>
     </div>
-    <div>
-      Categories
-      Category#
-      Category#
-      Category#
-      Category#
-      Category#
-      Category#
-      Category#
-    </div>
-    <div>
-      Items
-      Item#
-      Item#
-      Item#
-      Item#
-      Item#
-      Item#
-      Item#
-      Item#
-      Item#
-      Item#
-      Item#
-      Item#
+    <div class="content">
+      <div class="content-left">
+          Categories
+        <div class="vertical-menu">
+            <ul>
+              <li>Category#</li>
+              <li>Category#</li>
+              <li>Category#</li>
+              <li>Category#</li>
+              <li>Category#</li>
+              <li>Category#</li>
+              <li>Category#</li>
+            </ul>
+        </div>
+      </div>
+      <div class="content-right">
+          Items
+        <div class="vertical-menu">
+            <ul>
+              <li>Item#</li>
+              <li>Item#</li>
+              <li>Item#</li>
+              <li>Item#</li>
+              <li>Item#</li>
+              <li>Item#</li>
+              <li>Item#</li>
+            </ul>
+        </div>
+      </div>
     </div>
   </body>
 </html>
