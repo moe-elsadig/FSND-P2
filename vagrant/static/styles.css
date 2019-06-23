@@ -41,11 +41,11 @@
 }
 .content-right {
   float: none;
+  margin: auto;
   overflow: hidden;
   padding: 4px
 }
 .content-right a {
-  float: left;
   display: block;
   height: 200px;
   width: 300px;
