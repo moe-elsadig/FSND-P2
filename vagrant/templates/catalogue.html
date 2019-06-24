@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <!-- Link this file to the styles.css file in the static folder -->
-      <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
-    </head>
+    <meta charset="utf-8">
+    <!-- Link this file to the styles.css file in the static folder -->
+    <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css')}}">
+  </head>
   <body>
 
       <div class="header">
@@ -38,8 +39,14 @@
                 {% for category in categories %}
                   <div>
                     <a class="mini" href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
-                    <a class="mod-btn" href="{{url_for('editCategory', category_id=category.id)}}"><img src="https://img.icons8.com/material-two-tone/24/000000/edit.png"></a>
-                    <a class="mod-btn" href="{{url_for('deleteCategory', category_id=category.id)}}"><img src="https://img.icons8.com/material/30/000000/delete-sign.png"></a>
+                    <a class="mod-btn" href="{{url_for('editCategory', category_id=category.id)}}">
+                      <!-- <img src="https://img.icons8.com/material-two-tone/24/000000/edit.png"> -->
+                      <img src="/vagrant/images/icons8-edit-100.png" alt="edit button">
+                    </a>
+                    <a class="mod-btn" href="{{url_for('deleteCategory', category_id=category.id)}}">
+                      <!-- <img src="https://img.icons8.com/material/30/000000/delete-sign.png"> -->
+                      <img src="/vagrant/images/icons8-delete-100.png" alt="delete button">
+                    </a>
                   </div>
                 {% endfor %}
             </div>
