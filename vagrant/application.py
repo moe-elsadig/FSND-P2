@@ -47,12 +47,16 @@ def login_required(f):
             return redirect('/login')
     return decorated_function
 
+DEBUG_MODE = True
 
 @app.route('/')
 @app.route('/catalogue/')
 @app.route('/categories/')
 def showCategories():
 
+    if DEBUG_MODE:
+        login_session['google_user_id'] = "debugging google_user_id"
+        login_session['username'] = "debugging username"
     # try to see if a user is currently logged in and assign a value
     # this will help toggle the login/logout buttons on a page
     if login_session.get('google_user_id'):
