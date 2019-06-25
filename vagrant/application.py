@@ -35,7 +35,6 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-
 # Check if the user is already logged in
 def login_required(f):
     @wraps(f)
@@ -57,6 +56,9 @@ def showCategories():
     if DEBUG_MODE:
         login_session['google_user_id'] = "debugging google_user_id"
         login_session['username'] = "debugging username"
+        login_session['user_id'] = 999999
+        login_session['picture'] = None
+        login_session['email'] = "m.da7th@gmail.com"
     # try to see if a user is currently logged in and assign a value
     # this will help toggle the login/logout buttons on a page
     if login_session.get('google_user_id'):
