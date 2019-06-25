@@ -53,6 +53,7 @@
                           <div class="flip-card-back">
                             <h1>Description:</h1>
                             <p>{{item.title}}</p>
+                            <a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a>
                             <p>{{item.description}}</p>
                           </div>
                         </div>
