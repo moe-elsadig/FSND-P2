@@ -4,73 +4,65 @@
       <!-- Link this file to the styles.css file in the static folder -->
       <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
     </head>
+    <body>
 
-  <body>
-
-    <h1>Catalogue</h1>
-
-    <!-- Check if a user is logged in and show the correct button -->
-    {% if log_in_stat == None %}
-    <button><a href={{url_for('showLogin')}} ><h3>LOGIN</h3></a></button>
-    {% else %}
-    <button><a href={{url_for('gdisconnect')}} ><h3>LOGOUT</h3></a></button>
-    {% endif %}
-
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-
-        <ul>
-          {% for message in messages %}
-
-            <li> <strong> {{ message }} </strong> </li>
-
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-
-    <h2> Latest Items: </h2>
-
-    {% for item in items %}
-
-      <h3><a href='{{url_for('showItem', category_id=category.id, item_id=item.id) }}' >{{item.title}}</h3></a>
-
-      {% endfor %}
-
-    <button><a href="{{url_for('newCategory')}}">Add a new Category</a></button>
-
-    {% for category in categories %}
-
-      <h2><a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a></h2>
-
-      <button><a href="{{url_for('editCategory', category_id=category.id)}}">Edit</a></button>
-
-      <button><a href="{{url_for('deleteCategory', category_id=category.id)}}">Delete</a></button>
-
-      {% if selected_id == category.id %}
-        <button><a href="{{url_for('newItem', category_id=category.id)}}">New</a></button>
-
-        </br></br>
-        {% endif %}
-
-      {% if items and category.id == items[0].category_id %}
-
-        {% for item in items %}
-
-
-          <h3><a href='{{url_for('showItem', category_id=category.id, item_id=item.id) }}' >{{item.title}}</h3></a>
-
-          <button><a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a></button>
-
-          <button><a href='{{url_for('deleteItem', category_id=category.id, item_id=item.id) }}' >Delete</a></button>
-
-        {% endfor %}
-      {% endif %}
-
-      </br></br>
-
-    {% endfor %}
-
-    </body>
-
+        <div class="header">
+            <div>
+                <a href="{{url_for('showCategories')}}" class="logo">Catalogue WebApp</a>
+            </div>
+            <div class="header-right">
+                <a class="active" href={{url_for('showLogin')}} >Login</a>
+            </div>
+          </div>
+    
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <li> <strong> {{ message }} </strong> </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    
+        <div class="content">
+          <div class="content-left">
+            <h2 class="content-section-title">Categories</h2>
+            <div class="vertical-menu">
+              {% for category in categories %}
+                {% if items and category.id == items[0].category_id %}
+                  <a class="active" href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
+                {% else %}
+                  <a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+            
+          <div class="content-right">
+            <h2 class="content-section-title">Category Items</h2>
+              <div>
+                {% for category in categories %}
+                  {% if items and category.id == items[0].category_id %}
+                    {% for item in items %}
+                      <div class="flip-card">
+                        <div class="flip-card-inner">
+                          <div class="flip-card-front">
+                            <h3>{{item.title}}</h3>
+                          </div>
+                          <div class="flip-card-back">
+                            <h1>Description:</h1>
+                            <p>{{item.title}}</p>
+                            <a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a>
+                            <p>{{item.description}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </body>
 </html>
