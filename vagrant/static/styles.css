@@ -1,3 +1,37 @@
+/*
+Header
+  Logo
+  Title
+  Login
+    Login-Image
+    Login-Button
+  Notification-Bar
+Body
+  Category-Section
+    Category-Section-Title
+    Category-Section-Add-Category-Button
+    Category-Section-List
+      Category-Section-List-Element
+        Category-Section-List-Element-Name
+        Category-Section-List-Element-Name-Edit-field
+        Category-Section-List-Element-Edit-Button
+        Category-Section-List-Element-Delete-Button
+  Item-Section
+    Item-Section-Title
+    Item-Section-Add-Item-Button
+    Item-Section-List
+      Item-Section-List-Element
+        Item-Section-List-Element-Image
+        Item-Section-List-Element-Image-Edit-button
+        Item-Section-List-Element-Image-Edit-field
+        Item-Section-List-Element-Name
+        Item-Section-List-Element-Name-Edit-button
+        Item-Section-List-Element-Name-Edit-field
+        Item-Section-List-Element-Description
+        Item-Section-List-Element-Description-Edit-button
+        Item-Section-List-Element-Description-Edit-Field
+*/
+
 .header {
   font-family: Arial, Helvetica, sans-serif;
   background: white;
