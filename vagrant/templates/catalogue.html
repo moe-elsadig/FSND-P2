@@ -39,8 +39,10 @@
                 {% for category in categories %}
                   <div>
                     <a class="mini" href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
-                    <a class="mod-btn" href="{{url_for('editCategory', category_id=category.id)}}"><img src="https://img.icons8.com/material-two-tone/24/000000/edit.png"></a>
-                    <a class="mod-btn" href="{{url_for('deleteCategory', category_id=category.id)}}"><img src="https://img.icons8.com/material/30/000000/delete-sign.png"></a>
+                    <a class="mod-btn" href="{{url_for('editCategory', category_id=category.id)}}">
+                      <img src="https://img.icons8.com/material-two-tone/24/000000/edit.png"></a>
+                    <a class="mod-btn" href="{{url_for('deleteCategory', category_id=category.id)}}">
+                      <img src="https://img.icons8.com/material/30/000000/delete-sign.png"></a>
                   </div>
                 {% endfor %}
             </div>
