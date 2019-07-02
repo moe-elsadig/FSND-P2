@@ -39,15 +39,13 @@ Content
 }
 /* Header */
 .header {
-  background: white;
-  overflow: hidden;
-  padding: 20px 10px;
-  max-width: 960px;
-  margin: auto;
+  background: green;
+  display: block;
 }
 /* Header-Logo */
 .header .logo {
   float: left;
+  align-self: center;
 }
 /* Header-Title */
 .header .title {
