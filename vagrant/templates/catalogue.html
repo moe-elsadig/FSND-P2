@@ -10,48 +10,50 @@
   <body>
     <div class="header">
       <div>
-        <a href="{{url_for("showCategories")}}" class="logo">Catalogue WebApp</a>
+        <a href="{{url_for("showCategories")}}" class="title">Catalogue WebApp</a>
       </div>
-      <div class="header-right">
+      <div class="login">
         <!-- Check if a user is logged in and show the correct button -->
         {% if log_in_stat == None %}
-          <a  class="active" href={{url_for('showLogin')}} >Login</a>
+          <a  class="login active" href={{url_for('showLogin')}} >Login</a>
         {% else %}
-          <a  class="active" href={{url_for('gdisconnect')}} >Logout</a>
+          <a  class="login active" href={{url_for('gdisconnect')}} >Logout</a>
         {% endif %}
       </div>
     </div>
-  
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-          {% for message in messages %}
-            <li> <strong> {{ message }} </strong> </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-  
+
+    <div class="notification-bar">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul>
+            {% for message in messages %}
+              <li class="notification"> {{ message }} </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    </div>
+
     <div class="content">
-      <div class="content-left">
-        <h2 class="content-section-title">Categories</h2>
-        <div class="vertical-menu" style="flex: auto">
-          <a href="{{url_for('newCategory')}}">Add a new Category</a>
+      <div class="cat-sec">
+        <h2 class="cat-sec-title">Categories</h2>
+        <a class="add_btn" href="{{url_for('newCategory')}}">Add a new Category</a>
+        <div class="cat-list">
           {% for category in categories %}
-            <div>
-              <a class="mini" href="{{url_for('showItems', category_id=category.id)}}">{{category.title}}</a>
-              <a class="mod-btn" href="{{url_for('editCategory', category_id=category.id)}}">
+            <div class="cat-element">
+              <a class="cat_name" href="{{url_for('showItems', category_id=category.id)}}">{{category.title}}</a>
+              <a class="cat_name_edit_btn" href="{{url_for('editCategory', category_id=category.id)}}">
                 <img src="https://img.icons8.com/material-two-tone/24/000000/edit.png"></a>
-              <a class="mod-btn" href="{{url_for('deleteCategory', category_id=category.id)}}">
+              <a class="cat_name_delete_btn" href="{{url_for('deleteCategory', category_id=category.id)}}">
                 <img src="https://img.icons8.com/material/30/000000/delete-sign.png"></a>
             </div>
           {% endfor %}
         </div>
       </div>
   
-      <div class="content-right">
-        <h2 class="content-section-title">Latest Items Added</h2>
-        <div>
+      <div class="item-sec">
+        <h2 class="item-sec-title">Latest Items Added</h2>
+        <div class="item-sec-list">
           {% for item in latest_items %}
             <div class="flip-card">
               <div class="flip-card-inner">
