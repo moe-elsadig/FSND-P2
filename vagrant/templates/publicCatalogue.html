@@ -32,7 +32,7 @@
           <h2 class="content-section-title">Categories</h2>
           <div class="vertical-menu">
               {% for category in categories %}
-              <a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
+              <a href="{{url_for('showItems', category_id=category.id)}}">{{category.title}}</a>
               {% endfor %}
           </div>
         </div>

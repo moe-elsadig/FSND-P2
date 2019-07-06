@@ -33,9 +33,9 @@
             <div class="vertical-menu">
               {% for category in categories %}
                 {% if items and category.id == items[0].category_id %}
-                  <a class="active" href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
+                  <a class="active" href="{{url_for('showItems', category_id=category.id)}}">{{category.title}}</a>
                 {% else %}
-                  <a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
+                  <a href="{{url_for('showItems', category_id=category.id)}}">{{category.title}}</a>
                 {% endif %}
               {% endfor %}
             </div>
@@ -55,7 +55,7 @@
                           <div class="flip-card-back">
                             <h1>Description:</h1>
                             <p>{{item.title}}</p>
-                            <a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a>
+                            <a href="{{url_for('editItem', category_id=category.id, item_id=item.id) }}">Edit</a>
                             <p>{{item.description}}</p>
                           </div>
                         </div>
