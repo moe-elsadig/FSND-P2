@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html>
 
   <head>
       <meta charset="utf-8" />
       <!-- Link this file to the styles.css file in the static folder -->
-      <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
+      <link rel=stylesheet href="{{url_for('static',filename='styles.css') }}">
     </head>
 
   <body>
@@ -27,9 +28,9 @@
   </br>
   <h3>{{item.description}}<h3>
 
-    <button><a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a></button>
+    <button><a href="{{url_for('editItem', category_id=category.id, item_id=item.id) }}">Edit</a></button>
 
-    <button><a href='{{url_for('deleteItem', category_id=category.id, item_id=item.id) }}' >Delete</a></button>
+    <button><a href="{{url_for('deleteItem', category_id=category.id, item_id=item.id) }}">Delete</a></button>
 
     <button><a href="{{url_for('showItems', category_id=category.id)}}">Back</a></button>
 

@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html>
 
   <head>
       <meta charset="utf-8" />
       <!-- Link this file to the styles.css file in the static folder -->
-      <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
+      <link rel=stylesheet href="{{url_for('static',filename='styles.css') }}">
     </head>
 
   <body>
@@ -33,9 +34,9 @@
         <div class="vertical-menu">
           {% for category in categories %}
             {% if items and category.id == items[0].category_id %}
-              <a class="active" href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
+              <a class="active" href="{{url_for('showItems', category_id=category.id)}}">{{category.title}}</a>
             {% else %}
-              <a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
+              <a href="{{url_for('showItems', category_id=category.id)}}">{{category.title}}</a>
             {% endif %}
           {% endfor %}
         </div>

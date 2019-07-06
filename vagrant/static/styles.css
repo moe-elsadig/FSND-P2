@@ -1,61 +1,116 @@
-.header {
+/*
+Header
+  Header-Logo
+  Header-Title
+  Header-Login
+    Header-Login-Image
+    Header-Login-Button
+Notification-Bar
+  Notification-Bar-Notification
+Content
+  Category-Section
+    Category-Section-Title
+    Category-Section-Add-Category-Button
+    Category-Section-List
+      Category-Section-List-Element
+        Category-Section-List-Element-Name
+        Category-Section-List-Element-Name-Edit-field
+        Category-Section-List-Element-Edit-Button
+        Category-Section-List-Element-Delete-Button
+  Item-Section
+    Item-Section-Title
+    Item-Section-Add-Item-Button
+    Item-Section-List
+      Item-Section-List-Element
+        Item-Section-List-Element-Image
+        Item-Section-List-Element-Image-Edit-button
+        Item-Section-List-Element-Image-Edit-field
+        Item-Section-List-Element-Name
+        Item-Section-List-Element-Name-Edit-button
+        Item-Section-List-Element-Name-Edit-field
+        Item-Section-List-Element-Description
+        Item-Section-List-Element-Description-Edit-button
+        Item-Section-List-Element-Description-Edit-Field
+*/
+
+/* All */
+* {
   font-family: Arial, Helvetica, sans-serif;
-  background: white;
-  overflow: hidden;
-  padding: 20px 10px;
-  max-width: 960px;
-  margin: auto;
 }
-.header a {
+/* Header */
+.header {
+  background: green;
+  display: block;
+}
+/* Header-Logo */
+.header .logo {
+  float: left;
+  align-self: center;
+}
+/* Header-Title */
+.header .title {
   float: left;
   color: gray;
   text-align: center;
   padding: 12px;
   text-decoration: none;
-  font-size: 28px;
+  font-size: 45px;
+  font-weight: 300;
   line-height: 25px;
   border-radius: 4px;
 }
-.header a.logo {
-  font-size: 45px;
-  font-weight: 300;
-}
-.header a:hover{
+.header .title:hover{
   background-color: white;
   color: black;
 }
-.header a.active{
+.header .title.active{
   background: #FFF0EF;
   color: gray;
 }
-.header-right {
+/* Header-Login */
+.header .login {
   float: right;
 }
+/* Header-Login-Image */
+.header .login .image {
+  float: right;
+}
+/* Header-Login-Button */
+.header .login .button {
+  float: right;
+  color: gray;
+  text-align: center;
+  text-decoration: none;
+  padding: 12px;
+  font-size: 25px;
+}
+.header .login .button:hover {
+  background-color: lightblue;
+}
+/* Notification-Bar */
+.notification-bar {
+  background-color: lightblue;
+  align-self: auto;
+}
+/* Notification-Bar-Notification */
+.notification-bar .notification {
+  text-decoration: underline;
+  font-size: 30px;
+  text-align: center;
+}
+/* Content */
 .content {
   font-family: Arial, Helvetica, sans-serif;
-  background: white;
+  background: lightcoral;
 }
-.content-left {
-  float:left;
-  padding: 4px
-}
-.content-right {
-  float: none;
-  margin: auto;
-  overflow: hidden;
-  padding: 4px
-}
-.content-right a {
-  display: block;
-  height: 200px;
-  width: 300px;
-}
-.content-right div.flip-card {
+/* Category-Section */
+.content .cat-sec {
   float: left;
-  display: block;
+  background-color: chocolate;
   padding: 4px
 }
-.content-section-title {
+/* Category-Section-Title */
+.content .cat-sec .cat-title {
   background: #FFF0EF;
   color: black;
   height: 50px;
@@ -64,10 +119,27 @@
   text-align: center;
   font-weight: 150;
 }
-.vertical-menu {
+/* Category-Section-Add-Category-Button */
+.content .cat-sec .add_btn {
+  float:none;
+  width: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+  float:right;
+  width: 10px;
+  cursor: pointer;
+  background: #FFF0EF;
+  vertical-align: middle;
+}
+.content .cat-sec .add_btn:hover {
+  background: lightblue;
+}
+/* Category-Section-List */
+.content .cat-sec .cat-list {
   width: 200px;
 }
-.vertical-menu a {
+/* Category-Section-List-Element */
+.content .cat-sec .cat-list .cat-element {
   background-color: #FFF0EF;
   color: black;
   display: block;
@@ -78,22 +150,162 @@
   white-space: nowrap;
   text-overflow: clip
 }
-.vertical-menu a.mini {
-  background-color: #FFF0EF;
+.content .cat-sec .cat-list .cat-element:hover {
+  background-color: lightblue;
+}
+.content .cat-sec .cat-list .cat-element.active {
+  background-color: lightblue;
   color: black;
-  display: inline-block;
-  width: 40%;
+}
+/* Category-Section-List-Element-Name */
+.content .cat-sec .cat-list .cat-element .cat_name {
+  color: red;
+}
+/* Category-Section-List-Element-Name-Edit-field */
+.content .cat-sec .cat-list .cat-element .cat_name_edit_field {
+  float: none;
+}
+/* Category-Section-List-Element-Edit-Button */
+.content .cat-sec .cat-list .cat-element .cat_name_edit_btn {
+  width: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+  float:right;
+  width: 10px;
+  cursor: pointer;
+  background: #FFF0EF;
+  vertical-align: middle;
+}
+.content .cat-sec .cat-list .cat-element .cat_name_edit_btn:hover {
+  background: lightblue;
+}
+/* Category-Section-List-Element-Delete-Button */
+.content .cat-sec .cat-list .cat-element .cat_name_delete_btn {
+  width: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+  float:right;
+  width: 10px;
+  cursor: pointer;
+  background: #FFF0EF;
+  vertical-align: middle;
+}
+.content .cat-sec .cat-list .cat-element .cat_name_delete_btn:hover {
+  background-color: lightblue;
+}
+/* Item-Section */
+.content .item-sec {
+  float: right;
+  background-color: blue;
+  margin: auto;
+  padding: 4px;
+  display: flex
+}
+/* Item-Section-Title */
+.content .item-sec .item-sec-title {
+  background: #FFF0EF;
+  color: black;
+  height: 50px;
   padding: 12px;
   margin: 4px;
-  text-decoration: none;
+  text-align: center;
+  font-weight: 150;
 }
-.vertical-menu a:hover {
-  background-color: white;
+/* Item-Section-Add-Item-Button */
+.content .item-sec .add_btn {
+  float: none;
+  float:right;
+  width: 10px;
+  cursor: pointer;
+  background: #FFF0EF;
+  vertical-align: middle;
+  width: 10px;
+  cursor: pointer;
+  vertical-align: middle;
 }
-.vertical-menu a.active {
-  background-color: white;
-  color: black;
+.content .item-sec .add_btn:hover {
+  background-color: lightblue;
 }
+/* Item-Section-List */
+.content .item-sec .item-list {
+  float: none;
+}
+/* Item-Section-List-Element */
+.content .item-sec .item-list .item-element {
+  display: block;
+  height: 200px;
+  width: 300px;
+}
+/* Item-Section-List-Element-Image */
+.content .item-sec .item-list .item-element .image {
+  float:none;
+}
+/* Item-Section-List-Element-Image-Edit-button */
+.content .item-sec .item-list .item-element .image_edit_btn {
+  width: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+  float:right;
+  width: 10px;
+  cursor: pointer;
+  background: #FFF0EF;
+  vertical-align: middle;
+}
+.content .item-sec .item-list .item-element .image_edit_btn:hover {
+  background-color: lightblue;
+}
+/* Item-Section-List-Element-Image-Edit-field */
+.content .item-sec .item-list .item-element .image_edit_field {
+  float:none;
+}
+/* Item-Section-List-Element-Name */
+.content .item-sec .item-list .item-element .item_name {
+  color: red;
+}
+/* Item-Section-List-Element-Name-Edit-button */
+.content .item-sec .item-list .item-element .item_name_edit_btn {
+  width: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+  float:right;
+  width: 10px;
+  cursor: pointer;
+  background: #FFF0EF;
+  vertical-align: middle;
+}
+.content .item-sec .item-list .item-element .item_name_edit_btn:hover {
+  background-color: lightblue;
+}
+.content .item-sec .item-list .item-element .item_name_edit_btn:hover {
+  background-color: lightblue;
+}
+/* Item-Section-List-Element-Name-Edit-field */
+.content .item-sec .item-list .item-element .item-name-edit-field {
+  float:none;
+}
+/* Item-Section-List-Element-Description */
+.content .item-sec .item-list .item-element .item_desc {
+  color: red;
+}
+/* Item-Section-List-Element-Description-Edit-button */
+.content .item-sec .item-list .item-element .item-desc-edit-btn {
+  width: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+  float:right;
+  width: 10px;
+  cursor: pointer;
+  background: #FFF0EF;
+  vertical-align: middle;
+}
+.content .item-sec .item-list .item-element .item-desc-edit-btn:hover {
+  background-color: lightblue;
+}
+/* Item-Section-List-Element-Description-Edit-Field */
+.content .item-sec .item-list .item-element .item_desc_edit_field {
+  float:none;
+}
+
 .flip-card {
   background-color: transparent;
   width: 300px;
@@ -127,39 +339,6 @@
   color: black;
   transform: rotateY(180deg);
 }
-.mod-btn {
-  float:right;
-  width: 10px;
-  cursor: pointer;
-  background: #FFF0EF;
-  vertical-align: middle;
-}
-.mod-btn img {
-  width: 10px;
-  cursor: pointer;
-  vertical-align: middle;
-}
-.edit-btn:hover {
-  background: white;
-}
 @media screen and (max-width: 500px){
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .header-right {
-    float:none;
-  }
-  .header {
-    float:none;
-  }
-  .content-right {
-    float:none;
-  }
-  .content-right a {
-    float: none;
-    display: block;
-    text-align: left
-  }
+  
 }

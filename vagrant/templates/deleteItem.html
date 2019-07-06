@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html>
 
   <head>
       <meta charset="utf-8" />
       <!-- Link this file to the styles.css file in the static folder -->
-      <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
+      <link rel=stylesheet href="{{url_for('static',filename='styles.css') }}">
     </head>
 
   <body>
@@ -27,7 +28,7 @@
 
     <h2>Are you sure you want to delete the "{{item.title}}" item from the "{{category.title}} category"?</h2>
 
-    <input type='submit' value='Confirm'>
+    <input type="submit" value="Confirm">
 
     <button><a href="{{url_for('showItems', category_id=category_id, item_id=item.id)}}">Back</a></button>
 

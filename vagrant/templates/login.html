@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8" />
     <!-- Link this file to the styles.css file in the static folder -->
-    <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
+    <link rel=stylesheet href="{{url_for('static',filename='styles.css') }}">
     <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
@@ -36,7 +36,7 @@
     <!-- end of Google Sign in  button -->
 
     <!-- Show other data received from the server if the result was Successful -->
-    <div id='result'>
+    <div id="result">
     </div>
 
     <!-- To send the authorization code to the server -->
