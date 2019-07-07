@@ -36,59 +36,55 @@ Content
 /* All */
 * {
   font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }
 /* Header */
 .header {
-  background: green;
-  display: block;
+  background-color: green;
+  height: 85px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
 }
 /* Header-Logo */
 .header .logo {
-  float: left;
-  align-self: center;
+  color: gray;
 }
 /* Header-Title */
 .header .title {
   float: left;
-  color: gray;
-  text-align: center;
-  padding: 12px;
   text-decoration: none;
-  font-size: 45px;
-  font-weight: 300;
-  line-height: 25px;
-  border-radius: 4px;
+  font-size: x-large;
+  color: gray;
 }
 .header .title:hover{
-  background-color: white;
-  color: black;
+  background-color: lightblue;
 }
 .header .title.active{
-  background: #FFF0EF;
-  color: gray;
+  background-color: lightcoral;
 }
 /* Header-Login */
 .header .login {
-  float: right;
+  float: right
 }
 /* Header-Login-Image */
 .header .login .image {
-  float: right;
 }
 /* Header-Login-Button */
-.header .login .button {
-  float: right;
-  color: gray;
-  text-align: center;
+.header .login .login_btn {
   text-decoration: none;
-  padding: 12px;
-  font-size: 25px;
+  font-size: x-large;
+  color: gray
 }
 .header .login .button:hover {
   background-color: lightblue;
 }
+.header .login .button:active {
+  background-color: lightcoral;
+}
 /* Notification-Bar */
 .notification-bar {
+  display: block;
   background-color: lightblue;
   align-self: auto;
 }
