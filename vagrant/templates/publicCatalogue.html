@@ -9,15 +9,15 @@
 
   <body>
     <div class="header">
-      <div>
           <a href="{{url_for("showCategories")}}" class="title">Catalogue WebApp</a>
-      </div>
+      
       <div class="login">
-          <a class="button" href={{url_for('showLogin')}} >Login</a>
+          <a class="login_btn" href={{url_for('showLogin')}} >Login</a>
       </div>
     </div>
 
     <div class="notification-bar">
+        <li class="notification"> This is a notification </li>
       {% with messages = get_flashed_messages() %}
         {% if messages %}
           <ul>
