@@ -45,17 +45,8 @@
         <h2 class="item-sec-title">Latest Items Added</h2>
         <div class="item-sec-list">
           {% for item in latest_items %}
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h3>{{item.title}}</h3>
-                </div>
-                <div class="flip-card-back">
-                  <h1>Description:</h1>
-                  <p>{{item.title}}</p>
-                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae corporis blanditiis explicabo libero optio beatae.</p>
-                </div>
-              </div>
+            <div class="item-element">
+              <h3 class="item-name">{{item.title}}</h3>
             </div>
           {% endfor %}
         </div>
