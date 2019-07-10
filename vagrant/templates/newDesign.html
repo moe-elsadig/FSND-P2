@@ -12,6 +12,8 @@
         justify-items: stretch;
         /* vertical alignment */
         align-items: stretch;
+        max-width: 1280px;
+        margin: auto;
     }
     .content > div{
         background: #eee;
@@ -21,14 +23,13 @@
         background: #ddd;
     }
     .header{
-        /* align-self: start; */
+        align-self: center;
         grid-column: 1/9;
         grid-row: 1/2;
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
     .header > div {
-        font-size: 60px;
         justify-self: start;
         background-color: bisque
     }
@@ -66,6 +67,24 @@
         justify-self: center;
         align-self: center
     }
+    .list_cat{
+        padding: 5px;
+        justify-self: left;
+        align-self: center;
+        background-color: azure
+    }
+    .list_item{
+        padding: 5px;
+        justify-self: left;
+        align-self: center;
+        background-color: azure
+    }
+    .item_desc{
+        padding: 5px;
+        justify-self: center;
+        align-self: center;
+        background-color: blanchedalmond;
+    }
   </style>
 </head>
 <body>
@@ -80,12 +99,24 @@
     </div>
     <div class="box cat_list list">
         <div class="list_title">Category List</div>
-        <div>Category</div>
-        <div>Category</div>
-        <div>Category</div>
-        <div>Category</div>
+        <div class="list_cat">Category</div>
+        <div class="list_cat">Category</div>
+        <div class="list_cat">Category</div>
+        <div class="list_cat">Category</div>
+        <div class="list_cat">Category</div>
     </div>
-    <div class="box item_list">Item List</div>
+    <div class="box item_list list">
+        <div class="list_title">Item List</div>
+        <div class="list_item">Item</div>
+        <div class="list_item">Item</div>
+        <div class="list_item">Item</div>
+        <div class="list_item">Item</div>
+        <div class="list_item">Item</div>
+        <div class="list_item">Item</div>
+        <div class="list_item">Item</div>
+        <div class="list_item">Item</div>
+        <div class="list_item">Item</div>
+    </div>
     <div class="box item_desc">Item Description</div>
   </div>
 </body>
