@@ -1,17 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>New Design Draft Example</title>
-        <style>
-            .wrapper{
-                display: grid;
-                grid-template-columns: repeat(8, 1fr);
-            }
-        
-        </style>
-    </head>
-    <body>
-
-    </body>
+<head>
+  <title>CSS Grids</title>
+  <style>
+    .content{
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        grid-gap: 1em;
+        /* horizontal alignment */
+        justify-items: stretch;
+        /* vertical alignment */
+        align-items: stretch;
+    }
+    .content > div{
+        background: #eee;
+        padding: 1em;
+    }
+    .content > div:nth-child(odd){
+        background: #ddd;
+    }
+    .header{
+        /* align-self: start; */
+        grid-column: 1/9;
+        grid-row: 1/2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .header > div {
+        font-size: 60px;
+        justify-self: start;
+        background-color: bisque
+    }
+    .header >div:nth-child(even){
+        justify-self: end;
+        background-color: antiquewhite
+    }
+    .cat_list{
+        /* align-self: end; */
+        grid-column: 1/3;
+        grid-row: 2/7;
+    }
+    .item_list{
+        /* justify-self: end; */
+        grid-column: 3/5;
+        grid-row: 2/7;
+    }
+    .item_desc{
+        /* justify-self: center; */
+        grid-column: 5/9;
+        grid-row: 2/7;
+    }
+    .list{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: minmax(50px,auto);
+        grid-gap: 0.5em;
+    }
+    .list >div:nth-child(odd){
+        background-color: aquamarine
+    }
+    .list_title{
+        padding:10px;
+        background-color: aqua;
+        justify-self: center;
+        align-self: center
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="box header">
+        <div>
+            Title
+        </div>
+        <div>
+            Login
+        </div>
+    </div>
+    <div class="box cat_list list">
+        <div class="list_title">Category List</div>
+        <div>Category</div>
+        <div>Category</div>
+        <div>Category</div>
+        <div>Category</div>
+    </div>
+    <div class="box item_list">Item List</div>
+    <div class="box item_desc">Item Description</div>
+  </div>
+</body>
 </html>
