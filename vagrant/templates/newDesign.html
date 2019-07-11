@@ -37,6 +37,11 @@
         justify-self: left;
         align-self: center;
         font-size: 50px;
+        padding:10px;
+        border-radius: 4px;
+    }
+    .header_text:hover{
+        cursor: pointer;
     }
     .header_logo{
         height: 50px;
@@ -46,7 +51,9 @@
         background-color: transparent;
         border-radius: 25px;
         background-color: white;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .header_logo:hover{
+        cursor: pointer;
     }
     .notification_sec{
         align-self: end;
@@ -57,6 +64,7 @@
     .login_icon{
         height: 30px;
         width: 30px;
+        padding: 5px;
         border-radius: 10px;
         align-self: center;
         justify-self: right
@@ -65,6 +73,11 @@
         font-size: 25px;
         align-self: center;
         justify-self: left;
+        border-radius: 4px;
+    }
+    .login_icon:hover,.login_text:hover{
+        background-color: aqua;
+        cursor: pointer;
     }
     /* End of Header Section */
     /* Start of content section */
@@ -90,8 +103,16 @@
     .sec_btn{
         height: 40px;
         width:40px;
+        padding: 5px;
         justify-self: center;
         align-self: center;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .sec_btn:hover{
+        box-shadow: 0px 0px;
+        background-color: aqua;
+        cursor: pointer;
     }
     /* End of Section Definitions */
     .list{
@@ -108,9 +129,16 @@
         align-self: start;
         background-color: white;
         border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .list_item:hover{
+        box-shadow: 0px 0px;
+        background-color: aqua;
+        cursor: pointer;
     }
     .list_item_text{
         justify-self: left;
+        align-self: center
     }
     .list_item_logo{
         height: 10px;
@@ -121,8 +149,15 @@
     .list_item_btn{
         height: 15px;
         width: 15px;
+        padding: 5px;
         align-self: center;
         justify-self: right;
+        border-radius: 4px;
+    }
+    .list_item_btn:hover{
+        box-shadow: 0px 0px;
+        background-color: palevioletred;
+        cursor: pointer;
     }
     .desc_box{
         display: grid;
@@ -136,6 +171,7 @@
         background-color: white;
         border-radius: 4px;
         padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
     /* End of Content Section */
   </style>
