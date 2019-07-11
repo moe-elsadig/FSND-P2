@@ -20,23 +20,17 @@
         margin: auto;
     }
     .content > div{
-        background: #eee;
+        background-color: lightskyblue;
         padding: 1em;
-    }
-    .content > div:nth-child(odd){
-        background: #ddd;
+        border-radius: 4px
     }
     .header{
         align-self: center;
         grid-column: 1/9;
         grid-row: 1/2;
         display: grid;
-        grid-template-columns: 1fr 10fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 5fr 1fr 1fr;
         grid-gap: 1em;
-    }
-    .header > div {
-        justify-self: start;
-        background-color: bisque
     }
     .header_text{
         justify-self: left;
@@ -44,10 +38,20 @@
         font-size: 50px;
     }
     .header_logo{
-        height: 30px;
-        width: 30px;
+        height: 50px;
+        width: 50px;
         align-self: center;
-        justify-self: right
+        justify-self: right;
+        background-color: transparent;
+        border-radius: 25px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .notification_sec{
+        align-self: end;
+        font-style: italic;
+        justify-self: center;
+        color: gray
     }
     .login_icon{
         height: 20px;
@@ -61,17 +65,14 @@
         justify-self: left;
     }
     .cat_list_sec{
-        /* align-self: end; */
         grid-column: 1/3;
         grid-row: 2/4;
     }
     .item_list_sec{
-        /* justify-self: end; */
         grid-column: 3/5;
         grid-row: 2/4;
     }
     .item_desc_sec{
-        /* justify-self: center; */
         grid-column: 5/9;
         grid-row: 2/4;
     }
@@ -81,12 +82,9 @@
         grid-auto-rows: minmax(50px,auto);
         grid-gap: 0.5em;
     }
-    .list >div:nth-child(odd){
-        background-color: aquamarine
-    }
     .sec_title{
         padding:10px;
-        background-color: aqua;
+        text-decoration: underline lightgray;
         justify-self: center;
         align-self: start;
     }
@@ -96,7 +94,8 @@
         padding: 5px;
         justify-self: stretch;
         align-self: start;
-        background-color: azure
+        background-color: white;
+        border-radius: 4px;
     }
     .desc_box{
         display: grid;
@@ -104,10 +103,12 @@
         padding: 5px;
         justify-self: center;
         align-self: center;
-        background-color: blanchedalmond;
     }
     .desc_text{
         justify-content: left;
+        background-color: white;
+        border-radius: 4px;
+        padding: 10px;
     }
     .list_item_text{
         justify-self: left;
@@ -119,15 +120,14 @@
         justify-self: left;
     }
     .list_item_btn{
-        height: 10px;
-        width: 10px;
+        height: 15px;
+        width: 15px;
         align-self: center;
         justify-self: right;
     }
     .sec_btn{
         height: 40px;
         width:40px;
-        background-color: aquamarine;
         justify-self: center;
         align-self: center;
     }
@@ -137,15 +137,16 @@
 <body>
   <div class="content">
     <div class="header">
-        <img class="header_logo" src="/vagrant/images/google_icon.png">
+        <img class="header_logo" src="/vagrant/images/Logo_4000px4000px.png">
         <div class="header_text">Title</div>
+        <div class="notification_sec"></div>
         <img class="login_icon" src="/vagrant/images/google_icon.png">
         <div class="login_text">Login</div>
     </div>
     <div class="cat_list_sec list">
         <div class="sec_title">Category List</div>
         <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
+            <img src="/vagrant/images/Logo_4000px4000px.png" class="list_item_logo">
             <div class="list_item_text">Category</div>
             <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
             <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
@@ -154,7 +155,7 @@
     <div class="item_list_sec list">
         <div class="sec_title">Item List</div>
         <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
+            <img src="/vagrant/images/Logo_4000px4000px.png" class="list_item_logo">
             <div class="list_item_text">Item</div>
             <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
             <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
