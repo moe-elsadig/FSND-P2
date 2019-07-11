@@ -37,20 +37,20 @@
         justify-self: end;
         background-color: antiquewhite
     }
-    .cat_list{
+    .cat_list_sec{
         /* align-self: end; */
         grid-column: 1/3;
-        grid-row: 2/7;
+        grid-row: 2/4;
     }
-    .item_list{
+    .item_list_sec{
         /* justify-self: end; */
         grid-column: 3/5;
-        grid-row: 2/7;
+        grid-row: 2/4;
     }
-    .item_desc{
+    .item_desc_sec{
         /* justify-self: center; */
         grid-column: 5/9;
-        grid-row: 2/7;
+        grid-row: 2/4;
     }
     .list{
         display: grid;
@@ -61,7 +61,7 @@
     .list >div:nth-child(odd){
         background-color: aquamarine
     }
-    .list_title{
+    .sec_title{
         padding:10px;
         background-color: aqua;
         justify-self: center;
@@ -72,14 +72,20 @@
         grid-template-columns: 1fr 5fr 1fr 1fr 1fr;
         padding: 5px;
         justify-self: stretch;
-        align-self: center;
+        align-self: start;
         background-color: azure
     }
     .desc_box{
+        display: grid;
+        grid-gap: 1em;
         padding: 5px;
         justify-self: center;
         align-self: center;
         background-color: blanchedalmond;
+    }
+    .desc_text{
+
+        font-family: Arial, Helvetica, sans-serif;
     }
     .list_item_text{
         font-family: Arial, Helvetica, sans-serif;
@@ -96,12 +102,19 @@
         align-self: center;
         justify-self: right;
     }
+    .sec_btn{
+        height: 40px;
+        width:40px;
+        background-color: aquamarine;
+        justify-self: center;
+        align-self: center;
+    }
   </style>
 </head>
 
 <body>
   <div class="content">
-    <div class="box header">
+    <div class="header">
         <div>
             Title
         </div>
@@ -109,38 +122,8 @@
             Login
         </div>
     </div>
-    <div class="box cat_list list">
-        <div class="list_title">Category List</div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Category</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Category</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Category</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Category</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Category</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
+    <div class="cat_list_sec list">
+        <div class="sec_title">Category List</div>
         <div class="list_item">
             <img src="/vagrant/images/google_icon.png" class="list_item_logo">
             <div class="list_item_text">Category</div>
@@ -148,74 +131,8 @@
             <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
         </div>
     </div>
-    <div class="box item_list list">
-        <div class="list_title">Item List</div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Item</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Item</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Item</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Item</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Item</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Item</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Item</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Item</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Item</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Item</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
-        <div class="list_item">
-            <img src="/vagrant/images/google_icon.png" class="list_item_logo">
-            <div class="list_item_text">Item</div>
-            <img src="/vagrant/images/icons8-edit-100.png" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
-        </div>
+    <div class="item_list_sec list">
+        <div class="sec_title">Item List</div>
         <div class="list_item">
             <img src="/vagrant/images/google_icon.png" class="list_item_logo">
             <div class="list_item_text">Item</div>
@@ -223,9 +140,12 @@
             <img src="/vagrant/images/icons8-delete-100.png" class="list_item_btn">
         </div>
     </div>
-    <div class="desc_box item_desc">
-        Item Description:
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque, id reprehenderit. Fugit cum non veritatis, temporibus beatae repudiandae aliquam libero illo voluptas, placeat quas sequi repellendus consequuntur ad aperiam. Pariatur inventore blanditiis, nobis cum at aperiam itaque accusamus unde, ad eveniet dicta ea libero. Consequuntur animi harum repellendus sint. Enim totam cumque, voluptas earum architecto ducimus atque a placeat odio? Accusamus maxime, eius minima, numquam quas qui nisi ullam repudiandae, illum quis a dicta labore fuga omnis recusandae repellendus obcaecati?
+    <div class="item_desc_sec">
+        <div class="desc_box">
+            <div class="sec_title">Description</div>
+            <div class="desc_text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque, id reprehenderit. Fugit cum non veritatis, temporibus beatae repudiandae aliquam libero illo voluptas, placeat quas sequi repellendus consequuntur ad aperiam. Pariatur inventore blanditiis, nobis cum at aperiam itaque accusamus unde, ad eveniet dicta ea libero. Consequuntur animi harum repellendus sint. Enim totam cumque, voluptas earum architecto ducimus atque a placeat odio? Accusamus maxime, eius minima, numquam quas qui nisi ullam repudiandae, illum quis a dicta labore fuga omnis recusandae repellendus obcaecati?</div>
+            <img src="/vagrant/images/icons8-edit-100.png" class="sec_btn">
+        </div>
     </div>
   </div>
 </body>
