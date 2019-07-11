@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8" />
     <!-- Link this file to the styles.css file in the static folder -->
     <link rel=stylesheet href="{{url_for('static',filename='styles.css') }}">
   </head>
-
   <body>
-    <div class="header">
-          <a href="{{url_for("showCategories")}}" class="title">Catalogue WebApp</a>
-      
-      <div class="login">
-          <a class="login_btn" href={{url_for('showLogin')}} >Login</a>
-      </div>
-    </div>
-
-    <div class="notification-bar">
-        <li class="notification"> This is a notification </li>
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <ul>
-            {% for message in messages %}
-              <li class="notification"> {{ message }} </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      {% endwith %}
-    </div>
-
     <div class="content">
-      <div class="cat-sec">
-        <h2 class="cat-sec-title">Categories</h2>
-        <div class="cat-list">
-            {% for category in categories %}
-              <div class="cat-element">
-                <a class="cat-name" href="{{url_for('showItems', category_id=category.id)}}">{{category.title}}</a>
-              </div>
-            {% endfor %}
+      <div class="header">
+        <img class="header_logo" alt="site logo" src="/vagrant/images/Logo_4000px4000px.png">
+        <a href="{{url_for("showCategories")}}" class="header_text">Catalogue WebApp</a>
+        <div class="notification_sec">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <ul>
+                {% for message in messages %}
+                  <li class="notification"> {{ message }} </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endwith %}
+        </div>
+        <img class="login_icon" alt="avatar" src="/vagrant/images/avatar.png">
+        <div class="login_text">
+          <a href={{url_for('showLogin')}}>Login</a>
         </div>
       </div>
-
-      <div class="item-sec">
-        <h2 class="item-sec-title">Latest Items Added</h2>
-        <div class="item-sec-list">
-          {% for item in latest_items %}
-            <div class="item-element">
-              <h3 class="item-name">{{item.title}}</h3>
-            </div>
-          {% endfor %}
+      <div class="cat_list_sec list">
+        <div class="sec_title">Categories</div>
+        {% for category in categories %}
+          <a class="list_item" href="{{url_for('showItems', category_id=category.id)}}">
+            <img src="/vagrant/images/Logo_4000px4000px.png" alt="category image" class="list_item_logo">
+            <div class="list_item_text">{{category.title}}</div>
+          </a>
+        {% endfor %}
+      </div>
+      <div class="item_list_sec list">
+        <div class="sec_title">Latest Items</div>
+        {% for item in latest_items %}
+          <a class="list_item">
+            <img src="/vagrant/images/Logo_4000px4000px.png" alt="item image" class="list_item_logo">
+            <div class="list_item_text">{{item.title}}</div>
+          </a>
+        {% endfor %}
+      </div>
+      <div class="item_desc_sec">
+        <div class="desc_box">
+          <div class="sec_title">Description</div>
+          <div class="desc_text">Click on an item to view its description.</div>
         </div>
       </div>
     </div>
