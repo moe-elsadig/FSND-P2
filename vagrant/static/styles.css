@@ -1,6 +1,9 @@
 *{
   font-family: Arial, Helvetica, sans-serif;
 }
+a{
+  text-decoration: none;
+}
 .content{
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -73,6 +76,10 @@
   background-color: aqua;
   cursor: pointer;
 }
+.login_icon.active,.login_text.active{
+  background-color: aqua;
+  cursor: pointer;
+}
 /* End of Header Section */
 /* Start of content section */
 /* Start of Section Definitions */
@@ -108,12 +115,18 @@
   background-color: aqua;
   cursor: pointer;
 }
+.sec_btn.active{
+  box-shadow: 0px 0px;
+  background-color: aqua;
+  cursor: pointer;
+}
 /* End of Section Definitions */
 .list{
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: minmax(50px,auto);
   grid-gap: 0.5em;
+  align-content: start;
 }
 .list_item{
   display: grid;
@@ -126,6 +139,11 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .list_item:hover{
+  box-shadow: 0px 0px;
+  background-color: aqua;
+  cursor: pointer;
+}
+.list_item.active{
   box-shadow: 0px 0px;
   background-color: aqua;
   cursor: pointer;
@@ -149,6 +167,11 @@
   border-radius: 4px;
 }
 .list_item_btn:hover{
+  box-shadow: 0px 0px;
+  background-color: palevioletred;
+  cursor: pointer;
+}
+.list_item_btn.active{
   box-shadow: 0px 0px;
   background-color: palevioletred;
   cursor: pointer;
