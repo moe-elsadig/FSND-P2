@@ -227,6 +227,13 @@ def showItem(category_id, item_id):
     item = session.query(CategoryItem).filter_by(
         id=item_id, category_id=category_id).one_or_none()
 
+    # Obtain a list of the available categories
+    categories = session.query(Category).all()
+
+    # Obtain a list of the selected category's items
+    items = session.query(CategoryItem).filter_by(
+        category_id=category_id).all()
+
     # Check to see if a user is currently logged in to access the page
     if 'username' not in login_session:
         return render_template('publicItem.html', category_id=category_id,
