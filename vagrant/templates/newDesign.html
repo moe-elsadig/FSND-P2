@@ -3,6 +3,10 @@
 <head>
   <title>CSS Grids</title>
   <style>
+
+    *{
+        font-family: Arial, Helvetica, sans-serif;
+    }
     .content{
         display: grid;
         grid-template-columns: repeat(8, 1fr);
@@ -27,15 +31,34 @@
         grid-column: 1/9;
         grid-row: 1/2;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 10fr 1fr 1fr;
+        grid-gap: 1em;
     }
     .header > div {
         justify-self: start;
         background-color: bisque
     }
-    .header >div:nth-child(even){
-        justify-self: end;
-        background-color: antiquewhite
+    .header_text{
+        justify-self: left;
+        align-self: center;
+        font-size: 50px;
+    }
+    .header_logo{
+        height: 30px;
+        width: 30px;
+        align-self: center;
+        justify-self: right
+    }
+    .login_icon{
+        height: 20px;
+        width: 20px;
+        align-self: center;
+        justify-self: right
+    }
+    .login_text{
+        font-size: 25px;
+        align-self: center;
+        justify-self: left;
     }
     .cat_list_sec{
         /* align-self: end; */
@@ -84,11 +107,10 @@
         background-color: blanchedalmond;
     }
     .desc_text{
-
-        font-family: Arial, Helvetica, sans-serif;
+        justify-content: left;
     }
     .list_item_text{
-        font-family: Arial, Helvetica, sans-serif;
+        justify-self: left;
     }
     .list_item_logo{
         height: 10px;
@@ -115,12 +137,10 @@
 <body>
   <div class="content">
     <div class="header">
-        <div>
-            Title
-        </div>
-        <div>
-            Login
-        </div>
+        <img class="header_logo" src="/vagrant/images/google_icon.png">
+        <div class="header_text">Title</div>
+        <img class="login_icon" src="/vagrant/images/google_icon.png">
+        <div class="login_text">Login</div>
     </div>
     <div class="cat_list_sec list">
         <div class="sec_title">Category List</div>
