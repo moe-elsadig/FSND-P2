@@ -51,10 +51,17 @@
         {% for category in categories %}
           {% if items and category.id == items[0].category_id %}
             {% for item in items %}
-              <a class="list_item" href="{{url_for('showItem', category_id=category.id, item_id=item.id)}}">
-                <img src="/vagrant/images/Logo_4000px4000px.png" alt="item image" class="list_item_logo">
-                <div class="list_item_text">{{item.title}}</div>
-              </a>
+              {% if item.id == item_id %}
+                <a class="list_item active" href="{{url_for('showItem', category_id=category.id, item_id=item.id)}}">
+                  <img src="/vagrant/images/Logo_4000px4000px.png" alt="item image" class="list_item_logo">
+                  <div class="list_item_text">{{item.title}}</div>
+                </a>
+              {% else %}
+                <a class="list_item" href="{{url_for('showItem', category_id=category.id, item_id=item.id)}}">
+                  <img src="/vagrant/images/Logo_4000px4000px.png" alt="item image" class="list_item_logo">
+                  <div class="list_item_text">{{item.title}}</div>
+                </a>
+              {% endif %}
             {% endfor %}
           {% endif %}
         {% endfor %}

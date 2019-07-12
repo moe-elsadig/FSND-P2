@@ -224,8 +224,6 @@ def deleteCategory(category_id):
 def showItem(category_id, item_id):
 
     category = session.query(Category).filter_by(id=category_id).one_or_none()
-    item = session.query(CategoryItem).filter_by(
-        id=item_id, category_id=category_id).one_or_none()
 
     # Obtain a list of the available categories
     categories = session.query(Category).all()
@@ -234,12 +232,16 @@ def showItem(category_id, item_id):
     items = session.query(CategoryItem).filter_by(
         category_id=category_id).all()
 
+    item = session.query(CategoryItem).filter_by(
+        id=item_id, category_id=category_id).one_or_none()
+
     # Check to see if a user is currently logged in to access the page
     if 'username' not in login_session:
-        return render_template('publicItem.html', category_id=category_id,
-                               item_id=item_id, category=category, item=item)
+        return render_template('publicItem.html', selected_item=category_id,
+                               item_id=item_id, category=category, item=item, 
+                               categories=categories, items=items)
     else:
-        return render_template('item.html', category_id=category_id,
+        return render_template('item.html', selected_id=category_id,
                                item_id=item_id, category=category, item=item)
 
 
