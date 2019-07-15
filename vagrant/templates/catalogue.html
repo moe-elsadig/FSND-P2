@@ -36,10 +36,12 @@
           <a class="list_item" href="{{url_for('showItems', category_id=category.id)}}">
             <img src="/vagrant/images/Logo_4000px4000px.png" alt="category image" class="list_item_logo">
             <div class="list_item_text">{{category.title}}</div>
-            <!-- <a class="cat_name_edit_btn" href="{{url_for('editCategory', category_id=category.id)}}"></a> -->
-            <img src="/vagrant/images/icons8-edit-100.png" alt="edit" class="list_item_btn">
-            <!-- <a class="cat_name_delete_btn" href="{{url_for('deleteCategory', category_id=category.id)}}"></a> -->
-            <img src="/vagrant/images/icons8-delete-100.png" alt="delete" class="list_item_btn">
+            <a href="{{url_for('editCategory', category_id=category.id)}}">
+              <img src="/vagrant/images/icons8-edit-100.png" alt="edit" class="list_item_btn">
+            </a>
+            <a href="{{url_for('deleteCategory', category_id=category.id)}}">
+              <img src="/vagrant/images/icons8-delete-100.png" alt="delete" class="list_item_btn">
+            </a>
           </a>
         {% endfor %}
       </div>
