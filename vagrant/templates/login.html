@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <!-- Link this file to the styles.css file in the static folder -->
     <link rel=stylesheet href="{{url_for('static',filename='styles.css') }}">
     <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
@@ -19,13 +19,43 @@
       }
     </script>
   <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+  <style>
+    .login_content{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      grid-auto-rows: minmax(300px,auto);
+      grid-auto-columns: minmax(400px,auto);
+      background-color: yellow;
+      grid-gap: 1em;
+      align-items: stretch;
+      justify-items: stretch;
+      height: minmax(500px, 800px)
+    }
+
+    .login_card{
+      background-color: aquamarine;
+      grid-row: 2;
+      grid-column: 2;
+      height: 300px;
+      /* height: minmax(300px,auto) */
+    }
+  </style>
   </head>
 
-  <body style="float:left;margin:auto;padding:20px;">
+  <body>
+    <div class="login_content">
+      <div class="login_card" style="align-self: center;justify-self: center;background-color: aqua; align-content: center;justify-content: center;">
+        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google icon" style="overflow: hidden;padding: 10px 10px; max-width: 960px;margin: auto;justify-content: center;display: block"> 
+        <button id="signinButton">Google Signin</button>
+      </div>
+          <!-- Show other data received from the server if the result was Successful -->
+      <div id="result">
+      </div>
+    </div>
     <!-- Google Sign in  button -->
     <!-- <img src="/vagrant/images/icons8-google-48.png" alt="google icon"> -->
-    <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google icon" style="overflow: hidden;padding: 10px 10px; max-width: 960px;margin: auto;justify-content: center;display: block"> 
-    <button id="signinButton">Google Signin</button>
+    
 
     <script>
       $('#signinButton').click(function() {
@@ -34,10 +64,6 @@
       });
     </script>
     <!-- end of Google Sign in  button -->
-
-    <!-- Show other data received from the server if the result was Successful -->
-    <div id="result">
-    </div>
 
     <!-- To send the authorization code to the server -->
     <script>
