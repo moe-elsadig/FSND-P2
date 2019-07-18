@@ -1,33 +1,78 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <meta charset="utf-8" />
-      <!-- Link this file to the styles.css file in the static folder -->
-      <link rel=stylesheet href="{{url_for('static',filename='styles.css') }}">
-    </head>
+    <meta charset="utf-8" />
+    <!-- Link this file to the styles.css file in the static folder -->
+    <link rel=stylesheet href="{{url_for('static',filename='styles.css') }}">
+  </head>
   <body>
-
-    <h1>Item: {{item.title}}</h1>
-
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-
-        <ul>
-          {% for message in messages %}
-
-            <li> <strong> {{ message }} </strong> </li>
-
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-
-    <h2>Description:</h2>
-  </br>
-  <h3>{{item.description}}<h3>
-        <button><a href="{{url_for('showItems', category_id=category.id)}}">Back</a></button>
-
-        <button><a href="{{url_for('showCategories')}}">Home</a></button>
-
-    </body>
+    <!-- Start of Header Section -->
+    <div class="content">
+      <div class="header">
+        <img class="header_logo" alt="site logo" src="/vagrant/images/Logo_4000px4000px.png">
+        <a href="{{url_for("showCategories")}}" class="header_text">Catalogue WebApp</a>
+        <!-- Notification bar -->
+        <div class="notification_sec">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <ul>
+                {% for message in messages %}
+                  <li class="notification"> {{ message }} </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endwith %}
+        </div>
+        <img class="login_icon" alt="avatar" src="/vagrant/images/avatar.png">
+        <div class="login_text">
+          <a href={{url_for('showLogin')}}>Login</a>
+        </div>
+      </div>
+      <!-- End of Header Section -->
+      <!-- Start of Content Section -->
+      <div class="cat_list_sec list">
+        <div class="sec_title">Categories</div>
+        {% for category in categories %}
+          {% if items and category.id == items[0].category_id %}
+            <a class="list_item active" href="{{url_for('showItems', category_id=category.id)}}">
+              <img src="/vagrant/images/Logo_4000px4000px.png" alt="category image" class="list_item_logo">
+              <div class="list_item_text">{{category.title}}</div>
+            </a>
+          {% else %}
+            <a class="list_item" href="{{url_for('showItems', category_id=category.id)}}">
+              <img src="/vagrant/images/Logo_4000px4000px.png" alt="category image" class="list_item_logo">
+              <div class="list_item_text">{{category.title}}</div>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="item_list_sec list">
+        <div class="sec_title">Latest Items</div>
+        {% for category in categories %}
+          {% if items and category.id == items[0].category_id %}
+            {% for item in items %}
+              {% if item.id == item_id %}
+                <a class="list_item active" href="{{url_for('showItem', category_id=category.id, item_id=item.id)}}">
+                  <img src="/vagrant/images/Logo_4000px4000px.png" alt="item image" class="list_item_logo">
+                  <div class="list_item_text">{{item.title}}</div>
+                </a>
+              {% else %}
+                <a class="list_item" href="{{url_for('showItem', category_id=category.id, item_id=item.id)}}">
+                  <img src="/vagrant/images/Logo_4000px4000px.png" alt="item image" class="list_item_logo">
+                  <div class="list_item_text">{{item.title}}</div>
+                </a>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="item_desc_sec">
+        <div class="desc_box">
+          <div class="sec_title">Description</div>
+          <div class="desc_text">{{item.description}}</div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Content Section -->
+  </body>
 </html>
