@@ -191,7 +191,44 @@ a{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 /* End of Content Section */
+/* Start of Login Page */
+.login_content{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-auto-rows: minmax(100px,auto);
+  grid-auto-columns: minmax(100px,auto);
+  grid-gap: 1em;
+  align-self: stretch;
+  justify-self: stretch;
+}
 
+.login_card{
+  padding: 15px;
+  margin: 15px;
+  grid-row: 1;
+  grid-column: 1;
+  display: grid;
+  align-self: center;
+  justify-self: center;
+  justify-items: center;
+  border-radius: 4px;
+  box-shadow: 0px 2px 2px grey, 0px 2px 2px 0 gray;
+}
+
+.sign_in_btn{
+  align-self: center;
+  justify-self: center;
+  height: 30px;
+  border-style: 1px grey;
+  border-radius: 4px
+}
+.sign_in_btn:hover{
+  background-color: aqua;
+  cursor: pointer;
+  box-shadow: 0px 1px 1px grey;
+}
+/* End of Login Page */
 @media screen and (max-width: 500px){
   
 }
