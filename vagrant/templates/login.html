@@ -19,50 +19,12 @@
       }
     </script>
   <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
-  <style>
-    .login_content{
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
-      grid-auto-rows: minmax(100px,auto);
-      grid-auto-columns: minmax(100px,auto);
-      grid-gap: 1em;
-      align-self: stretch;
-      justify-self: stretch;
-    }
-
-    .login_card{
-      padding: 15px;
-      margin: 15px;
-      grid-row: 1;
-      grid-column: 1;
-      display: grid;
-      align-self: center;
-      justify-self: center;
-      justify-items: center;
-      border-radius: 4px;
-      box-shadow: 0px 2px 2px grey, 0px 2px 2px 0 gray;
-    }
-
-    .sign_in_btn{
-      align-self: center;
-      justify-self: center;
-      height: 30px;
-      border-style: 1px grey;
-      border-radius: 4px
-    }
-    .sign_in_btn:hover{
-      background-color: aqua;
-      cursor: pointer;
-      box-shadow: 0px 1px 1px grey;
-    }
-  </style>
   </head>
 
   <body>
     <div class="login_content">
       <div class="login_card">
-        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google icon" style="overflow: hidden;padding: 10px 10px; max-width: 960px;margin: auto;justify-content: center;display: block; height: 200px; width: 200px"> 
+        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google icon" style="overflow: hidden;padding: 100px 100px; max-width: 960px;margin: auto;justify-content: center;display: block; height: 40px; width: 40px"> 
         <!-- Show other data received from the server if the result was Successful -->
         <div id="result">
           <button class="sign_in_btn" id="signinButton">Google Signin</button>
