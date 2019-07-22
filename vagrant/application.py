@@ -251,7 +251,9 @@ def showItem(category_id, item_id):
                                categories=categories, items=items)
     else:
         return render_template('item.html', selected_id=category_id,
-                               item_id=item_id, category=category, item=item)
+                               item_id=item_id, item=item,
+                               category=category,
+                               categories=categories, items=items)
 
 
 @app.route('/category/<int:category_id>/item/<int:item_id>/JSON',
