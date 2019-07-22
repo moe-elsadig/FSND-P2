@@ -147,6 +147,15 @@ def newCategory():
             session.add(category)
             session.commit()
 
+            category_id = session.query(Category).filter_by(title=request.form['title']).one().id
+
+            item = CategoryItem(title=request.form['title'] + " items",
+                                user_id=login_session['user_id'],
+                                category_id=category_id,
+                                description="To add items, use the add items button on the items list.")
+            session.add(item)
+            session.commit()
+
             # Notify the user
             flash('~*New Category Created')
 
