@@ -34,7 +34,7 @@
         <div class="sec_title">Categories</div>
         {% for category in categories %}
           <a class="list_item" href="{{url_for('showItems', category_id=category.id)}}">
-            <img src="/vagrant/images/Logo_4000px4000px.png" alt="category image" class="list_item_logo">
+            <img src="~/Users/moe/Downloads/Udacity/webDev/fsnd/project_2/vagrant/images/logo_4000px4000px.png" alt="category image" class="list_item_logo">
             <div class="list_item_text">{{category.title}}</div>
             <a href="{{url_for('editCategory', category_id=category.id)}}">
               <img src="/vagrant/images/icons8-edit-100.png" alt="edit" class="list_item_btn">
