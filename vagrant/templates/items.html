@@ -31,6 +31,9 @@
       <!-- End of Header Section -->
       <!-- Start of Content Section -->
       <div class="cat_list_sec list">
+        <a href="{{url_for("newCategory")}}">
+          <div class="sec_btn">Add</div>
+        </a>
         <div class="sec_title">Categories</div>
         {% for category in categories %}
           {% if items and category.id == items[0].category_id %}
@@ -45,9 +48,11 @@
             </a>
           {% endif %}
         {% endfor %}
-        <div class="sec_btn">Add</div>
       </div>
       <div class="item_list_sec list">
+        <a href="{{url_for('newItem', category_id=items[0].category_id)}}">
+          <div class="sec_btn">Add</div>
+        </a>
         <div class="sec_title">Latest Items</div>
         {% for category in categories %}
           {% if items and category.id == items[0].category_id %}
@@ -59,7 +64,6 @@
             {% endfor %}
           {% endif %}
         {% endfor %}
-        <div class="sec_btn">Add</div>
       </div>
       <div class="item_desc_sec">
         <div class="desc_box">
