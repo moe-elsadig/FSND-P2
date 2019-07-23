@@ -31,6 +31,9 @@
         </div>
       </div>
       <div class="cat_list_sec list">
+        <a href="{{url_for("newCategory")}}">
+          <div class="sec_btn">Add</div>
+        </a>
         <div class="sec_title">Categories</div>
         {% for category in categories %}
           <a class="list_item" href="{{url_for('showItems', category_id=category.id)}}">
@@ -48,11 +51,9 @@
       <div class="item_list_sec list">
         <div class="sec_title">Latest Items</div>
         {% for item in latest_items %}
-          <a class="list_item">
+          <a class="list_item" href="{{url_for('showItem', category_id=item.category_id, item_id=item.id)}}">
             <img src="/vagrant/images/Logo_4000px4000px.png" alt="item image" class="list_item_logo">
             <div class="list_item_text">{{item.title}}</div>
-            <img src="/vagrant/images/icons8-edit-100.png" alt="edit" class="list_item_btn">
-            <img src="/vagrant/images/icons8-delete-100.png" alt="delete" class="list_item_btn">
           </a>
         {% endfor %}
       </div>
