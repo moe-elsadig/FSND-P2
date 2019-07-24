@@ -97,6 +97,7 @@ a{
 }
 .sec_title{
   padding:10px;
+  font-size: 25px;
   text-decoration: underline lightgray;
   justify-self: center;
   align-self: start;
@@ -201,7 +202,6 @@ a{
   align-self: stretch;
   justify-self: stretch;
 }
-
 .login_card{
   padding: 15px;
   margin: 15px;
@@ -214,7 +214,6 @@ a{
   border-radius: 4px;
   box-shadow: 0px 2px 2px grey, 0px 2px 2px 0 gray;
 }
-
 .sign_in_btn{
   align-self: center;
   justify-self: center;
