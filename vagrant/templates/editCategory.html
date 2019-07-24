@@ -8,30 +8,52 @@
     </head>
 
   <body>
+    <!-- Start of Header Section -->
+    <div class="content">
+      <div class="header">
+        <img class="header_logo" alt="site logo" src="https://img.icons8.com/material-rounded/96/000000/mesh.png">
+        <a href="{{url_for("showCategories")}}" class="header_text">Catalogue WebApp</a>
+        <!-- Notification bar -->
+        <div class="notification_sec">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <ul>
+                {% for message in messages %}
+                  <li class="notification"> {{ message }} </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endwith %}
+        </div>
+        <img class="login_icon" alt="avatar" src="https://img.icons8.com/material-rounded/96/000000/user-male-circle.png">
+        <div class="login_text">
+          <a href={{url_for('showLogin')}}>Login</a>
+        </div>
+      </div>
+      <!-- End of Header Section -->
 
-    <h1>Edit an existing Category</h1>
+      <h1>Edit an existing Category</h1>
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
 
-        <ul>
-          {% for message in messages %}
+          <ul>
+            {% for message in messages %}
 
-            <li> <strong> {{ message }} </strong> </li>
+              <li> <strong> {{ message }} </strong> </li>
 
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
 
-    <form action="{{url_for('editCategory', category_id=category_id)}}" method = 'POST'>
+      <form action="{{url_for('editCategory', category_id=category_id)}}" method = 'POST'>
 
-    <input type="text" size="30" name="title" placeholder="{{category.title}}">
-    
-    <input type="submit" value="Add">
+      <input type="text" size="30" name="title" placeholder="{{category.title}}">
+      
+      <input type="submit" value="Add">
 
-    <button><a href="{{url_for('showCategories')}}">Home</a></button>
-
-    </body>
-
+      <button><a href="{{url_for('showCategories')}}">Home</a></button>
+    </div>
+  </body>
 </html>
