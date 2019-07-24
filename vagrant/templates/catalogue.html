@@ -8,7 +8,7 @@
   <body>
     <div class="content">
       <div class="header">
-        <img class="header_logo" alt="site logo" src="/vagrant/images/Logo_4000px4000px.png">
+        <img class="header_logo" alt="site logo" src="https://img.icons8.com/material-rounded/96/000000/mesh.png">
         <a href="{{url_for("showCategories")}}" class="header_text">Catalogue WebApp</a>
         <div class="notification_sec">
           {% with messages = get_flashed_messages() %}
@@ -21,7 +21,7 @@
             {% endif %}
           {% endwith %}
         </div>
-        <img class="login_icon" alt="avatar" src="/vagrant/images/avatar.png">
+        <img class="login_icon" alt="avatar" src="https://img.icons8.com/material-rounded/96/000000/user-male-circle.png">
         <div class="login_text">
           {% if log_in_stat == None %}
             <a  class="login active" href={{url_for('showLogin')}} >Login</a>
@@ -32,18 +32,18 @@
       </div>
       <div class="cat_list_sec list">
         <a href="{{url_for("newCategory")}}">
-          <div class="sec_btn">Add</div>
+          <img class="sec_btn" src="https://img.icons8.com/material-rounded/96/000000/add-row.png">
         </a>
         <div class="sec_title">Categories</div>
         {% for category in categories %}
           <a class="list_item" href="{{url_for('showItems', category_id=category.id)}}">
-            <img src="~/Users/moe/Downloads/Udacity/webDev/fsnd/project_2/vagrant/images/logo_4000px4000px.png" alt="category image" class="list_item_logo">
+            <img src="https://img.icons8.com/material-rounded/48/000000/ingredients-list.png" alt="category image" class="list_item_logo">
             <div class="list_item_text">{{category.title}}</div>
-            <a href="{{url_for('editCategory', category_id=category.id)}}">
-              <img src="/vagrant/images/icons8-edit-100.png" alt="edit" class="list_item_btn">
+            <a href="{{url_for('editCategory', category_id=category.id)}}"  class="list_item_btn">
+              <img src="https://img.icons8.com/material-rounded/48/000000/edit-row.png" alt="edit button" class="list_item_btn_icon">
             </a>
-            <a href="{{url_for('deleteCategory', category_id=category.id)}}">
-              <img src="/vagrant/images/icons8-delete-100.png" alt="delete" class="list_item_btn">
+            <a href="{{url_for('deleteCategory', category_id=category.id)}}" class="list_item_btn">
+              <img src="https://img.icons8.com/material-rounded/48/000000/delete-row.png" alt="delete" class="list_item_btn_icon">
             </a>
           </a>
         {% endfor %}
@@ -52,7 +52,7 @@
         <div class="sec_title">Latest Items</div>
         {% for item in latest_items %}
           <a class="list_item" href="{{url_for('showItem', category_id=item.category_id, item_id=item.id)}}">
-            <img src="/vagrant/images/Logo_4000px4000px.png" alt="item image" class="list_item_logo">
+            <img src="https://img.icons8.com/material-rounded/48/000000/info.png" alt="item image" class="list_item_logo">
             <div class="list_item_text">{{item.title}}</div>
           </a>
         {% endfor %}
@@ -65,4 +65,7 @@
       </div>
     </div>
   </body>
+  <footer>
+    <a href="https://icons8.com/">Icons by Icons8! Awesome stuff.</a>
+  </footer>
 </html>
