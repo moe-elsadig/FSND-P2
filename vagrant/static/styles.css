@@ -132,7 +132,7 @@ a{
 }
 .list_item{
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 5fr 1fr 1fr;
   padding: 10px;
   justify-self: stretch;
   align-self: start;
@@ -151,7 +151,6 @@ a{
   cursor: pointer;
 }
 .list_item_text{
-  justify-self: left;
   align-self: center
 }
 .list_item_logo{
