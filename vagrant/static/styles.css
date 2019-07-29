@@ -5,6 +5,7 @@ a{
   text-decoration: none;
 }
 .content{
+  background-color: #eee;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-auto-rows: minmax(100px, auto);
@@ -15,20 +16,21 @@ a{
   align-items: stretch;
   max-width: 1280px;
   margin: auto;
+  padding: 0 0 15px 0px;
 }
 .content > div{
-  background-color: lightskyblue;
-  padding: 1em;
+  background-color: #fff;
+  padding: 5px;
   border-radius: 4px
 }
 /* Start of Header section */
 .header{
-  align-self: center;
+  align-self: start;
   grid-column: 1/9;
   grid-row: 1/2;
   display: grid;
   grid-template-columns: 1fr 4fr 2fr 1fr 1fr;
-  grid-gap: 1em;
+  grid-gap: 5px;
 }
 .header_text{
   justify-self: left;
