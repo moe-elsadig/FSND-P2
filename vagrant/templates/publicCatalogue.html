@@ -1,59 +1,58 @@
+<!DOCTYPE html>
 <html>
-
   <head>
-      <!-- Link this file to the styles.css file in the static folder -->
-      <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
-    </head>
+    <meta charset="utf-8" />
+    <!-- Link this file to the styles.css file in the static folder -->
+    <link rel=stylesheet href="{{url_for('static',filename='styles.css') }}">
+  </head>
   <body>
-
-    <div class="header">
-      <div>
-          <a href="{{url_for("showCategories")}}" class="logo">Catalogue WebApp</a>
+    <div class="content">
+      <div class="header">
+        <img class="header_logo" alt="site logo" src="https://img.icons8.com/material-rounded/96/000000/mesh.png">
+        <a href="{{url_for("showCategories")}}" class="header_text">Catalogue WebApp</a>
+        <div class="notification_sec">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <ul>
+                {% for message in messages %}
+                  <li class="notification"> {{ message }} </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endwith %}
+        </div>
+        <img class="login_icon" alt="avatar" src="https://img.icons8.com/material-rounded/96/000000/user-male-circle.png">
+        <div class="login_text">
+          <a href={{url_for('showLogin')}}>Login</a>
+        </div>
       </div>
-      <div class="header-right">
-          <a class="active" href={{url_for('showLogin')}} >Login</a>
+      <div class="cat_list_sec list">
+        <div class="sec_title">Categories</div>
+        {% for category in categories %}
+          <a class="list_item" href="{{url_for('showItems', category_id=category.id)}}">
+            <img src="https://img.icons8.com/material-rounded/48/000000/ingredients-list.png" alt="category image" class="list_item_logo">
+            <div class="list_item_text">{{category.title}}</div>
+          </a>
+        {% endfor %}
+      </div>
+      <div class="item_list_sec list">
+        <div class="sec_title">Latest Items</div>
+        {% for item in latest_items %}
+          <a class="list_item">
+            <img src="https://img.icons8.com/material-rounded/48/000000/info.png" alt="item image" class="list_item_logo">
+            <div class="list_item_text">{{item.title}}</div>
+          </a>
+        {% endfor %}
+      </div>
+      <div class="item_desc_sec">
+        <div class="desc_box">
+          <div class="sec_title">Description</div>
+          <div class="desc_text">Click on an item to view its description.</div>
+        </div>
       </div>
     </div>
-
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-          {% for message in messages %}
-            <li> <strong> {{ message }} </strong> </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-
-    <div class="content">
-        <div class="content-left">
-          <h2 class="content-section-title">Categories</h2>
-          <div class="vertical-menu">
-              {% for category in categories %}
-              <a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
-              {% endfor %}
-          </div>
-        </div>
-
-        <div class="content-right">
-          <h2 class="content-section-title">Latest Items Added</h2>
-          <div>
-            {% for item in latest_items %}
-              <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <h3>{{item.title}}</h3>
-                  </div>
-                  <div class="flip-card-back">
-                    <h1>Description:</h1>
-                    <p>{{item.title}}</p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae corporis blanditiis explicabo libero optio beatae.</p>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-    </body>
+  </body>
+  <footer>
+    <a href="https://icons8.com/">Icons by Icons8! Awesome stuff.</a>
+  </footer>
 </html>

@@ -147,6 +147,15 @@ def newCategory():
             session.add(category)
             session.commit()
 
+            category_id = session.query(Category).filter_by(title=request.form['title']).one().id
+
+            item = CategoryItem(title=request.form['title'] + " items",
+                                user_id=login_session['user_id'],
+                                category_id=category_id,
+                                description="To add items, use the add items button on the items list.")
+            session.add(item)
+            session.commit()
+
             # Notify the user
             flash('~*New Category Created')
 
@@ -224,16 +233,27 @@ def deleteCategory(category_id):
 def showItem(category_id, item_id):
 
     category = session.query(Category).filter_by(id=category_id).one_or_none()
+
+    # Obtain a list of the available categories
+    categories = session.query(Category).all()
+
+    # Obtain a list of the selected category's items
+    items = session.query(CategoryItem).filter_by(
+        category_id=category_id).all()
+
     item = session.query(CategoryItem).filter_by(
         id=item_id, category_id=category_id).one_or_none()
 
     # Check to see if a user is currently logged in to access the page
     if 'username' not in login_session:
-        return render_template('publicItem.html', category_id=category_id,
-                               item_id=item_id, category=category, item=item)
+        return render_template('publicItem.html', selected_item=category_id,
+                               item_id=item_id, category=category, item=item, 
+                               categories=categories, items=items)
     else:
-        return render_template('item.html', category_id=category_id,
-                               item_id=item_id, category=category, item=item)
+        return render_template('item.html', selected_id=category_id,
+                               item_id=item_id, item=item,
+                               category=category,
+                               categories=categories, items=items)
 
 
 @app.route('/category/<int:category_id>/item/<int:item_id>/JSON',

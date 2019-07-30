@@ -1,68 +1,104 @@
+<!DOCTYPE html>
 <html>
-
   <head>
-      <!-- Link this file to the styles.css file in the static folder -->
-      <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
-    </head>
-    <body>
-
-        <div class="header">
-            <div>
-                <a href="{{url_for('showCategories')}}" class="logo">Catalogue WebApp</a>
-            </div>
-            <div class="header-right">
-                <a class="active" href={{url_for('showLogin')}} >Login</a>
-            </div>
-          </div>
-    
+    <meta charset="utf-8" />
+    <!-- Link this file to the styles.css file in the static folder -->
+    <link rel=stylesheet href="{{url_for('static',filename='styles.css') }}">
+  </head>
+  <body>
+    <!-- Start of Header Section -->
+    <div class="content">
+      <div class="header">
+        <img class="header_logo" alt="site logo" src="https://img.icons8.com/material-rounded/96/000000/mesh.png">
+        <a href="{{url_for("showCategories")}}" class="header_text">Catalogue WebApp</a>
+        <!-- Notification bar -->
+        <div class="notification_sec">
           {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <ul>
-              {% for message in messages %}
-                <li> <strong> {{ message }} </strong> </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        {% endwith %}
-    
-        <div class="content">
-          <div class="content-left">
-            <h2 class="content-section-title">Categories</h2>
-            <div class="vertical-menu">
-              {% for category in categories %}
-                {% if items and category.id == items[0].category_id %}
-                  <a class="active" href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
-                {% else %}
-                  <a href='{{url_for('showItems', category_id=category.id)}}'>{{category.title}}</a>
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-            
-          <div class="content-right">
-            <h2 class="content-section-title">Category Items</h2>
-              <div>
-                {% for category in categories %}
-                  {% if items and category.id == items[0].category_id %}
-                    {% for item in items %}
-                      <div class="flip-card">
-                        <div class="flip-card-inner">
-                          <div class="flip-card-front">
-                            <h3>{{item.title}}</h3>
-                          </div>
-                          <div class="flip-card-back">
-                            <h1>Description:</h1>
-                            <p>{{item.title}}</p>
-                            <a href='{{url_for('editItem', category_id=category.id, item_id=item.id) }}' >Edit</a>
-                            <p>{{item.description}}</p>
-                          </div>
-                        </div>
-                      </div>
-                    {% endfor %}
-                  {% endif %}
+            {% if messages %}
+              <ul>
+                {% for message in messages %}
+                  <li class="notification"> {{ message }} </li>
                 {% endfor %}
-              </div>
+              </ul>
+            {% endif %}
+          {% endwith %}
+        </div>
+        <img class="login_icon" alt="avatar" src="https://img.icons8.com/material-rounded/96/000000/user-male-circle.png">
+        <div class="login_text">
+          <a href={{url_for('showLogin')}}>Login</a>
+        </div>
+      </div>
+      <!-- End of Header Section -->
+      <!-- Start of Content Section -->
+      <div class="cat_list_sec list">
+        <a href="{{url_for("newCategory")}}">
+          <img class="sec_btn" src="https://img.icons8.com/material-rounded/96/000000/add-row.png">
+        </a>
+        <div class="sec_title">Categories</div>
+        {% for category in categories %}
+          {% if items and category.id == items[0].category_id %}
+            <div class="list_item active">
+              <img src="https://img.icons8.com/material-rounded/48/000000/ingredients-list.png" alt="category image" class="list_item_logo">
+              <a class="list_item_text" href="{{url_for('showItems', category_id=category.id)}}">
+                <div>{{category.title}}</div>
+              </a>
+              <a href="{{url_for('editCategory', category_id=category.id)}}"  class="list_item_btn">
+                <img src="https://img.icons8.com/material-rounded/48/000000/edit-row.png" alt="edit button" class="list_item_logo">
+              </a>
+              <a href="{{url_for('deleteCategory', category_id=category.id)}}" class="list_item_btn">
+                <img src="https://img.icons8.com/material-rounded/48/000000/delete-row.png" alt="delete" class="list_item_logo">
+              </a>
             </div>
-          </div>
-        </body>
+          {% else %}
+            <div class="list_item">
+              <img src="https://img.icons8.com/material-rounded/48/000000/ingredients-list.png" alt="category image" class="list_item_logo">
+              <a class="list_item_text" href="{{url_for('showItems', category_id=category.id)}}">
+                <div>{{category.title}}</div>
+              </a>
+              <a href="{{url_for('editCategory', category_id=category.id)}}"  class="list_item_btn">
+                <img src="https://img.icons8.com/material-rounded/48/000000/edit-row.png" alt="edit button" class="list_item_logo">
+              </a>
+              <a href="{{url_for('deleteCategory', category_id=category.id)}}" class="list_item_btn">
+                <img src="https://img.icons8.com/material-rounded/48/000000/delete-row.png" alt="delete" class="list_item_logo">
+              </a>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="item_list_sec list">
+        <a href="{{url_for('newItem', category_id=items[0].category_id)}}">
+          <img class="sec_btn" src="https://img.icons8.com/material-rounded/96/000000/add-row.png">
+        </a>
+        <div class="sec_title">Latest Items</div>
+        {% for category in categories %}
+          {% if items and category.id == items[0].category_id %}
+            {% for item in items %}
+            <div class="list_item">
+              <img src="https://img.icons8.com/material-rounded/48/000000/info.png" alt="category image" class="list_item_logo">
+              <a class="list_item_text" href="{{url_for('showItem', category_id=category.id, item_id=item.id)}}">
+                <div>{{item.title}}</div>
+              </a>
+              <a href="{{url_for('editItem', category_id=category.id, item_id=item.id)}}"  class="list_item_btn">
+                <img src="https://img.icons8.com/material-rounded/48/000000/edit-row.png" alt="edit button" class="list_item_logo">
+              </a>
+              <a href="{{url_for('deleteItem', category_id=category.id,item_id=item.id)}}" class="list_item_btn">
+                <img src="https://img.icons8.com/material-rounded/48/000000/delete-row.png" alt="delete" class="list_item_logo">
+              </a>
+            </div>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="item_desc_sec">
+        <div class="desc_box">
+          <div class="sec_title">Description</div>
+          <div class="desc_text">Click on an item to view its description.</div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Content Section -->
+  </body>
+  <footer>
+    <a href="https://icons8.com/">Icons by Icons8! Awesome stuff.</a>
+  </footer>
 </html>

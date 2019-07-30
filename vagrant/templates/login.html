@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
     <!-- Link this file to the styles.css file in the static folder -->
-    <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css') }}">
+    <link rel=stylesheet href="{{url_for('static',filename='styles.css') }}">
     <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
@@ -20,12 +21,17 @@
   <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
   </head>
 
-  <body style="float:left;margin:auto;padding:20px;">
-    <!-- Google Sign in  button -->
-    <!-- <img src="/vagrant/images/icons8-google-48.png" alt="google icon"> -->
-    <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google icon" style="overflow: hidden;padding: 10px 10px; max-width: 960px;margin: auto;justify-content: center;display: block"> 
-    <button id="signinButton">Google Signin</button>
-
+  <body>
+    <div class="login_content">
+      <div class="login_card">
+        <img src="https://img.icons8.com/color/96/000000/google-logo.png" alt="google icon"> 
+        <!-- Show other data received from the server if the result was Successful -->
+        <div id="result">
+          <button class="sign_in_btn" id="signinButton">Google Signin</button>
+        </div>
+      </div>
+    </div>
+    
     <script>
       $('#signinButton').click(function() {
         // call the signInCallback function
@@ -33,10 +39,6 @@
       });
     </script>
     <!-- end of Google Sign in  button -->
-
-    <!-- Show other data received from the server if the result was Successful -->
-    <div id='result'>
-    </div>
 
     <!-- To send the authorization code to the server -->
     <script>
@@ -73,4 +75,7 @@
     </script>
     <!-- end of To send the authorization code to the server -->
   </body>
+  <footer>
+    <a href="https://icons8.com/">Icons by Icons8! Awesome stuff.</a>
+  </footer>
 </html>
