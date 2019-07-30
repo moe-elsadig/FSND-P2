@@ -46,7 +46,7 @@ def login_required(f):
             return redirect('/login')
     return decorated_function
 
-DEBUG_MODE = False
+DEBUG_MODE = True
 
 @app.route('/')
 @app.route('/catalogue/')
