@@ -26,7 +26,10 @@ APPLICATION_NAME = "Catalogue Web App"
 
 # Load the client ID from the downloaded google client secret json file
 CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']
+    open('/var/www/FLASKAPPS/catalogueapp/client_secrets.json', 'r').read())['web']['client_id']
+# For local development
+# CLIENT_ID = json.loads(
+    # open('client_secrets.json', 'r').read())['web']['client_id']
 
 # Connect to Database and create a database session
 engine = create_engine('sqlite:///catalogue.db',
@@ -419,7 +422,9 @@ def gconnect():
     # from Google
     try:
         # Upgrade the authorization code into a credentials object
-        oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+        oauth_flow = flow_from_clientsecrets('/var/www/FLASKAPPS/catalogueapp/client_secrets.json', scope='')
+        # Uncomment this line for local development
+        # oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
 
@@ -631,7 +636,7 @@ def deleteUser(email):
     print (users)
 
 
-# Run the app in the localhost on port 8000
+# Run the app (host, port)
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
