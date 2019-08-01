@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-16.04"
   config.vm.box_version = "= 2.3.5"
-  config.vm.synced_folder ".", "/vagrant"
+  config.vm.synced_folder ".", "/catalogueApp"
   config.vm.network "forwarded_port", guest: 8000, host: 8000, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 8080, host: 8080, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 5000, host: 5000, host_ip: "127.0.0.1"
@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
     su vagrant -c 'createdb forum'
     su vagrant -c 'psql forum -f /vagrant/forum/forum.sql'
 
-    vagrantTip="[35m[1mThe shared directory is located at /vagrant\\nTo access your shared files: cd /vagrant[m"
+    vagrantTip="[35m[1mThe shared directory is located at /catalogueApp\\nTo access your shared files: cd /catalogueApp[m"
     echo -e $vagrantTip > /etc/motd
 
     wget http://download.redis.io/redis-stable.tar.gz
