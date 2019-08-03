@@ -27,7 +27,7 @@ LOCAL_DEBUG_MODE = False
 APPLICATION_NAME = "Catalogue Web App"
 
 # Load the client ID from the downloaded google client secret json file
-if !LOCAL_DEBUG_MODE:
+if not LOCAL_DEBUG_MODE:
     CLIENT_ID = json.loads(
         open('/var/www/catalogue_web/client_secrets.json', 'r').read())['web']['client_id']
 else:
@@ -58,7 +58,7 @@ def login_required(f):
 @app.route('/categories/')
 def showCategories():
 
-    if !LOCAL_DEBUG_MODE:
+    if not LOCAL_DEBUG_MODE:
         login_session['google_user_id'] = "debugging google_user_id"
         login_session['username'] = "debugging username"
         login_session['user_id'] = 1
@@ -423,7 +423,7 @@ def gconnect():
     # Try to obtain a credentials object from the authorization code received\
     # from Google
     try:
-        if !LOCAL_DEBUG_MODE:
+        if not LOCAL_DEBUG_MODE:
             # Upgrade the authorization code into a credentials object
             oauth_flow = flow_from_clientsecrets('/var/www/catalogue_web/client_secrets.json', scope='')
         else:
