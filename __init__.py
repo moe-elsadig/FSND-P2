@@ -21,15 +21,19 @@ from functools import wraps
 
 app = Flask(__name__)
 
+LOCAL_DEBUG_MODE = False
+
 # Define the name of the application
 APPLICATION_NAME = "Catalogue Web App"
 
 # Load the client ID from the downloaded google client secret json file
-CLIENT_ID = json.loads(
-    open('/var/www/FLASKAPPS/catalogueapp/client_secrets.json', 'r').read())['web']['client_id']
-# For local development
-# CLIENT_ID = json.loads(
-    # open('client_secrets.json', 'r').read())['web']['client_id']
+if LOCAL_DEBUG_MODE:
+    CLIENT_ID = json.loads(
+        open('/var/www/catalogue_web/client_secrets.json', 'r').read())['web']['client_id']
+else:
+    # For local development
+    CLIENT_ID = json.loads(
+        open('client_secrets.json', 'r').read())['web']['client_id']
 
 # Connect to Database and create a database session
 engine = create_engine('sqlite:///catalogue.db',
@@ -49,14 +53,12 @@ def login_required(f):
             return redirect('/login')
     return decorated_function
 
-DEBUG_MODE = False
-
 @app.route('/')
 @app.route('/catalogue/')
 @app.route('/categories/')
 def showCategories():
 
-    if DEBUG_MODE:
+    if LOCAL_DEBUG_MODE:
         login_session['google_user_id'] = "debugging google_user_id"
         login_session['username'] = "debugging username"
         login_session['user_id'] = 1
@@ -421,10 +423,12 @@ def gconnect():
     # Try to obtain a credentials object from the authorization code received\
     # from Google
     try:
-        # Upgrade the authorization code into a credentials object
-        oauth_flow = flow_from_clientsecrets('/var/www/FLASKAPPS/catalogueapp/client_secrets.json', scope='')
-        # Uncomment this line for local development
-        # oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+        if LOCAL_DEBUG_MODE:
+            # Upgrade the authorization code into a credentials object
+            oauth_flow = flow_from_clientsecrets('/var/www/catalogue_web/client_secrets.json', scope='')
+        else:
+            # For local development
+            oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
 
