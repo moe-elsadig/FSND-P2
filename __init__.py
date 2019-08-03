@@ -21,7 +21,7 @@ from functools import wraps
 
 app = Flask(__name__)
 
-LOCAL_DEBUG_MODE = False
+LOCAL_DEBUG_MODE = True
 
 # Define the name of the application
 APPLICATION_NAME = "Catalogue Web App"
