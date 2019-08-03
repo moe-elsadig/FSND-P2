@@ -58,7 +58,7 @@ def login_required(f):
 @app.route('/categories/')
 def showCategories():
 
-    if not LOCAL_DEBUG_MODE:
+    if LOCAL_DEBUG_MODE:
         login_session['google_user_id'] = "debugging google_user_id"
         login_session['username'] = "debugging username"
         login_session['user_id'] = 1
