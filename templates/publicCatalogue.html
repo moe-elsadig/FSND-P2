@@ -9,6 +9,251 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
     <link rel=stylesheet src="/static/styles.css">
     <link rel=stylesheet type=text/css href="/static/styles.css">
+    <style>
+      *{
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      a{
+        text-decoration: none;
+      }
+      .content{
+        background-color: #eee;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        grid-gap: 1em;
+        /* horizontal alignment */
+        justify-items: stretch;
+        /* vertical alignment */
+        align-items: stretch;
+        max-width: 1280px;
+        margin: auto;
+        padding: 0 15px 15px 15px;
+      }
+      .content > div{
+        background-color: #fff;
+        padding: 5px;
+        border-radius: 4px
+      }
+      /* Start of Header section */
+      .header{
+        align-self: start;
+        grid-column: 1/9;
+        grid-row: 1/2;
+        display: grid;
+        grid-template-columns: 1fr 4fr 2fr 1fr 1fr;
+        grid-gap: 5px;
+      }
+      .header_text{
+        justify-self: left;
+        align-self: center;
+        font-size: 50px;
+        padding:10px;
+        border-radius: 4px;
+      }
+      .header_text:hover{
+        cursor: pointer;
+      }
+      .header_logo{
+        height: 50px;
+        width: 50px;
+        align-self: center;
+        justify-self: right;
+        background-color: transparent;
+        border-radius: 25px;
+        background-color: white;
+      }
+      .header_logo:hover{
+        cursor: pointer;
+      }
+      .notification_sec{
+        align-self: end;
+        font-style: italic;
+        justify-self: center;
+        color: gray
+      }
+      .login_icon{
+        height: 30px;
+        width: 30px;
+        padding: 5px;
+        border-radius: 10px;
+        align-self: center;
+        justify-self: right
+      }
+      .login_text{
+        font-size: 25px;
+        align-self: center;
+        justify-self: left;
+        border-radius: 4px;
+      }
+      .login_icon:hover,.login_text:hover{
+        background-color: aqua;
+        cursor: pointer;
+      }
+      .login_icon.active,.login_text.active{
+        background-color: aqua;
+        cursor: pointer;
+      }
+      /* End of Header Section */
+      /* Start of content section */
+      /* Start of Section Definitions */
+      .cat_list_sec{
+        grid-column: 1/3;
+        grid-row: 2/4;
+      }
+      .item_list_sec{
+        grid-column: 3/5;
+        grid-row: 2/4;
+      }
+      .item_desc_sec{
+        grid-column: 5/9;
+        grid-row: 2/4;
+      }
+      .sec_title{
+        padding:10px;
+        font-size: 25px;
+        text-decoration: underline lightgray;
+        justify-self: center;
+        align-self: start;
+      }
+      .sec_btn{
+        height: 40px;
+        width:40px;
+        padding: 5px;
+        justify-self: center;
+        align-self: center;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      .sec_btn:hover{
+        box-shadow: 0px 0px;
+        background-color: aqua;
+        cursor: pointer;
+      }
+      .sec_btn.active{
+        box-shadow: 0px 0px;
+        background-color: aqua;
+        cursor: pointer;
+      }
+      /* End of Section Definitions */
+      .list{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: minmax(50px,auto);
+        align-content: start;
+      }
+      .list_item{
+        display: grid;
+        grid-template-columns: 1fr 5fr 1fr 1fr;
+        padding: 10px;
+        justify-self: stretch;
+        align-self: start;
+        background-color: white;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      .list_item:hover{
+        box-shadow: 0px 0px;
+        background-color: aqua;
+        cursor: pointer;
+      }
+      .list_item.active{
+        box-shadow: 0px 0px;
+        background-color: aqua;
+        cursor: pointer;
+      }
+      .list_item_text{
+        align-self: center
+      }
+      .list_item_logo{
+        height: 20px;
+        width: 20px;
+        align-self: center;
+        justify-self: left;
+      }
+      .list_item_btn{
+        height: 15px;
+        width: 15px;
+        padding: 5px;
+        align-self: center;
+        justify-self: right;
+        border-radius: 4px;
+      }
+      .list_item_btn:hover{
+        box-shadow: 0px 0px;
+        background-color: palevioletred;
+        cursor: pointer;
+      }
+      .list_item_btn.active{
+        box-shadow: 0px 0px;
+        background-color: palevioletred;
+        cursor: pointer;
+      }
+      .desc_box{
+        display: grid;
+        grid-gap: 1em;
+        padding: 5px;
+        justify-self: center;
+        align-self: center;
+      }
+      .desc_text{
+        justify-content: left;
+        background-color: white;
+        border-radius: 4px;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      /* End of Content Section */
+      /* Start of Login Page */
+      .login_content{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-auto-rows: minmax(100px,auto);
+        grid-auto-columns: minmax(100px,auto);
+        grid-gap: 1em;
+        align-self: stretch;
+        justify-self: stretch;
+      }
+      .login_card{
+        padding: 15px;
+        margin: 15px;
+        grid-row: 1;
+        grid-column: 1;
+        display: grid;
+        align-self: center;
+        justify-self: center;
+        justify-items: center;
+        border-radius: 4px;
+        box-shadow: 0px 2px 2px grey, 0px 2px 2px 0 gray;
+      }
+      .sign_in_btn{
+        align-self: center;
+        justify-self: center;
+        height: 30px;
+        border-style: 1px grey;
+        border-radius: 4px
+      }
+      .sign_in_btn:hover{
+        background-color: aqua;
+        cursor: pointer;
+        box-shadow: 0px 1px 1px grey;
+      }
+      /* End of Login Page */
+      @media screen and (max-width: 1095px){
+        
+        .header_text{
+          font-size: 30px;
+        }
+      }
+      @media screen and (max-width: 800px){
+        
+        .content{
+          display: block;
+        }
+      }
+    
+    </style>
   </head>
   <body>
     <div class="content">
