@@ -29,7 +29,7 @@ APPLICATION_NAME = "Catalogue Web App"
 # Load the client ID from the downloaded google client secret json file
 if not LOCAL_DEBUG_MODE:
     CLIENT_ID = json.loads(
-        open('/var/www/catalogue_web/client_secrets.json', 'r').read())['web']['client_id']
+        open('/home/m_da7th/FSND-P2/client_secrets.json', 'r').read())['web']['client_id']
 else:
     # For local development
     CLIENT_ID = json.loads(
@@ -425,7 +425,7 @@ def gconnect():
     try:
         if not LOCAL_DEBUG_MODE:
             # Upgrade the authorization code into a credentials object
-            oauth_flow = flow_from_clientsecrets('/var/www/catalogue_web/client_secrets.json', scope='')
+            oauth_flow = flow_from_clientsecrets('/home/m_da7th/FSND-P2/client_secrets.json', scope='')
         else:
             # For local development
             oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
